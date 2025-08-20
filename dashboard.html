@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR Dealer - Dealer Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Color variables */
+        :root {
+            --primary-white: #FFFFFF;
+            --deep-graphite: #1A1A1A;
+            --signature-blue: #1464F4;
+            --warm-gray: #F4F4F4;
+            --lemon: #F4E146;
+            --turquoise: #46F4E1;
+            --light-gray: #E5E5E5;
+            --orange: #FF6B35;
+            --success-green: #4CAF50;
+            --warning-yellow: #FF9800;
+            --error-red: #F44336;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-graphite);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--deep-graphite);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-item.active {
+            color: var(--signature-blue);
+        }
+
+        /* Main Dashboard Layout */
+        .dashboard-container {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: var(--warm-gray);
+        }
+
+        .dashboard-header {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--primary-white);
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+            text-transform: none;
+        }
+
+        /* Module Tabs */
+        .module-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            padding: 0 2rem;
+        }
+
+        .module-tab {
+            background: var(--primary-white);
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 1rem 2rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+            min-width: 150px;
+        }
+
+        .module-tab:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .module-tab:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .module-tab:not(:first-child) {
+            border-left: none;
+        }
+
+        .module-tab:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .module-tab.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        /* Module Content */
+        .module-content {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        /* Module Cards Grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .module-card {
+            background: var(--primary-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--deep-graphite);
+            font-weight: 700;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .card-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--signature-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-development {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--warning-yellow);
+        }
+
+        .status-planned {
+            background: rgba(244, 244, 244, 1);
+            color: #666;
+        }
+
+        /* Chatbot Section */
+        .chatbot-section {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(20, 100, 244, 0.3);
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(20, 100, 244, 0.4);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: var(--primary-white);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chatbot-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--primary-white);
+            color: var(--signature-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .chatbot-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .chatbot-info p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            background: var(--primary-white);
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            max-width: 80%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.user .message-content {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            gap: 0.5rem;
+            background: var(--primary-white);
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            padding: 0.75rem 1rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--signature-blue);
+        }
+
+        .send-btn {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            background: var(--deep-graphite);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .dashboard-container {
+                padding-top: 90px;
+            }
+
+            .dashboard-title {
+                font-size: 2rem;
+            }
+
+            .module-tabs {
+                padding: 0 1rem;
+            }
+
+            .module-tab {
+                min-width: 120px;
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+                right: -10px;
+            }
+
+            .chatbot-section {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--light-gray);
+            border-top: 2px solid var(--signature-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">AIR DEALER</a>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="index.html#problem" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="index.html#agents" class="nav-item" data-en="AI AGENTS" data-ru="ИИ АГЕНТЫ">AI AGENTS</a>
+            <a href="#" class="nav-item active" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
+            <a href="index.html#contact" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title" data-en="Dealer Platform" data-ru="Платформа дилера">Dealer Platform</h1>
+            <p class="dashboard-subtitle" data-en="AIR Dealer intelligent modules" data-ru="Интеллектуальные модули AIR Dealer">AIR Dealer intelligent modules</p>
+        </div>
+
+        <!-- Module Tabs -->
+        <div class="module-tabs">
+            <button class="module-tab active" data-module="scout" data-en="AIR Scout" data-ru="AIR Поиск">AIR Scout</button>
+            <button class="module-tab" data-module="match" data-en="AIR Match" data-ru="AIR Анализ">AIR Match</button>
+            <button class="module-tab" data-module="negotiator" data-en="AIR Negotiator" data-ru="AIR Продажа">AIR Negotiator</button>
+            <button class="module-tab" data-module="designer" data-en="AIR Designer" data-ru="AIR Проект">AIR Designer</button>
+            <button class="module-tab" data-module="service" data-en="AIR Service" data-ru="AIR Сервис">AIR Service</button>
+            <button class="module-tab" data-module="forecast" data-en="AIR Forecast" data-ru="AIR Прогноз">AIR Forecast</button>
+            <button class="module-tab" data-module="install" data-en="AIR Install" data-ru="AIR Монтаж">AIR Install</button>
+        </div>
+
+        <!-- AIR Scout Module -->
+        <div class="module-content active" data-content="scout">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">⚙️</div>
+                        <div>
+                            <h3 class="card-title" data-en="Product Discovery Engine" data-ru="Система поиска продуктов">Product Discovery Engine</h3>
+                        </div>
+                    </div>
+                    <p class="card-description" data-en="Intelligent search and matching system for HVAC equipment using AI algorithms" data-ru="Интеллектуальная система поиска и сопоставления HVAC оборудования с использованием AI алгоритмов">Intelligent search and matching system for HVAC equipment using AI algorithms</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">15,847</div>
+                            <div class="metric-label" data-en="Products" data-ru="Продуктов">Products</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">94%</div>
+                            <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔍</div>
+                        <div>
+                            <h3 class="card-title">Smart Search API</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">API для интеллектуального поиска продуктов с поддержкой естественного языка</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">2.4k</div>
+                            <div class="metric-label">Requests/day</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">0.8s</div>
+                            <div class="metric-label">Avg Response</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <div>
+                            <h3 class="card-title">Analytics Dashboard</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Аналитическая панель для отслеживания эффективности поиска</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">127</div>
+                            <div class="metric-label">Reports</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">98%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-development">Development</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Match Module -->
+        <div class="module-content" data-content="match">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <div>
+                            <h3 class="card-title">Configuration Engine</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Оптимальная конфигурация HVAC систем на основе требований клиента</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">3,247</div>
+                            <div class="metric-label">Configurations</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">91%</div>
+                            <div class="metric-label">Match Rate</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <h3 class="card-title">Real-time Matching</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Мгновенное сопоставление оборудования с требованиями проекта</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">1.2s</div>
+                            <div class="metric-label">Avg Time</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99%</div>
+                            <div class="metric-label">Success Rate</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <div>
+                            <h3 class="card-title">Optimization AI</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">ИИ для оптимизации энергоэффективности и стоимости</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">25%</div>
+                            <div class="metric-label">Savings</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">847</div>
+                            <div class="metric-label">Optimizations</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-development">Development</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Negotiator Module -->
+        <div class="module-content" data-content="negotiator">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">💰</div>
+                        <div>
+                            <h3 class="card-title">Dynamic Pricing</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Динамическое ценообразование с учетом рыночных условий</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">$2.4M</div>
+                            <div class="metric-label">Volume</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">18%</div>
+                            <div class="metric-label">Margin +</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🤝</div>
+                        <div>
+                            <h3 class="card-title">Negotiation Bot</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Автоматизированные переговоры с поставщиками</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">127</div>
+                            <div class="metric-label">Deals</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">92%</div>
+                            <div class="metric-label">Success</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📋</div>
+                        <div>
+                            <h3 class="card-title">Quote Generator</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Автоматическая генерация коммерческих предложений</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">456</div>
+                            <div class="metric-label">Quotes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">7min</div>
+                            <div class="metric-label">Avg Time</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Designer Module -->
+        <div class="module-content" data-content="designer">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📝</div>
+                        <div>
+                            <h3 class="card-title">System Layout Tool</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Инструмент для проектирования компоновки HVAC систем</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">89</div>
+                            <div class="metric-label">Layouts</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🏗️</div>
+                        <div>
+                            <h3 class="card-title">3D Modeling</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">3D моделирование установок и помещений</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">34</div>
+                            <div class="metric-label">Models</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">2.5GB</div>
+                            <div class="metric-label">Storage</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📐</div>
+                        <div>
+                            <h3 class="card-title">Specification Engine</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Автоматическая генерация технических спецификаций</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">156</div>
+                            <div class="metric-label">Specs</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Compliance</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Service Module -->
+        <div class="module-content" data-content="service">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔧</div>
+                        <div>
+                            <h3 class="card-title">Maintenance Planner</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Планировщик технического обслуживания оборудования</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">247</div>
+                            <div class="metric-label">Schedules</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99%</div>
+                            <div class="metric-label">On-time</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📞</div>
+                        <div>
+                            <h3 class="card-title">Support System</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Система технической поддержки клиентов</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">1,247</div>
+                            <div class="metric-label">Tickets</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">4.8</div>
+                            <div class="metric-label">Rating</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🚨</div>
+                        <div>
+                            <h3 class="card-title">Alert System</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Система предупреждений и мониторинга</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">89</div>
+                            <div class="metric-label">Alerts</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">24/7</div>
+                            <div class="metric-label">Monitoring</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Forecast Module -->
+        <div class="module-content" data-content="forecast">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <div>
+                            <h3 class="card-title">Predictive Analytics</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Предиктивная аналитика спроса и рыночных трендов</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">87%</div>
+                            <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">30d</div>
+                            <div class="metric-label">Forecast</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <div>
+                            <h3 class="card-title">Market Intelligence</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Анализ рыночной ситуации и конкурентов</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">247</div>
+                            <div class="metric-label">Sources</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Real-time</div>
+                            <div class="metric-label">Updates</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">💡</div>
+                        <div>
+                            <h3 class="card-title">Insights Engine</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Генерация инсайтов для бизнес-решений</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">156</div>
+                            <div class="metric-label">Insights</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">94%</div>
+                            <div class="metric-label">Relevance</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AIR Install Module -->
+        <div class="module-content" data-content="install">
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔩</div>
+                        <div>
+                            <h3 class="card-title">Crew Management</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Управление монтажными бригадами и ресурсами</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">47</div>
+                            <div class="metric-label">Teams</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label">Utilization</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">💵</div>
+                        <div>
+                            <h3 class="card-title">Cost Calculator</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Калькулятор стоимости монтажных работ</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">247</div>
+                            <div class="metric-label">Calculations</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">±5%</div>
+                            <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+
+                <div class="module-card">
+                    <div class="card-header">
+                        <div class="card-icon">⏱️</div>
+                        <div>
+                            <h3 class="card-title">Timeline Optimizer</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">Оптимизация временных рамок проектов</p>
+                    <div class="card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">89</div>
+                            <div class="metric-label">Projects</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">23%</div>
+                            <div class="metric-label">Time Saved</div>
+                        </div>
+                    </div>
+                    <div class="card-status status-planned">Planned</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div class="chatbot-section">
+        <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">AI</div>
+                <div class="chatbot-info">
+                    <h3>AIR Assistant</h3>
+                    <p>Online</p>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message">
+                    <div class="message-content" data-en="Hi! I'm AIR Assistant. How can I help with your modules?" data-ru="Привет! Я AIR Assistant. Чем могу помочь с вашими модулями?">
+                        Hi! I'm AIR Assistant. How can I help with your modules?
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="messageInput" placeholder="Enter message..." data-en-placeholder="Enter message..." data-ru-placeholder="Введите сообщение...">
+                <button class="send-btn" id="sendBtn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dashboard JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initModuleTabs();
+            initChatbot();
+            initAnimations();
+            initLanguageToggle();
+        });
+
+        // Language switching functionality
+        function initLanguageToggle() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsWithTranslations = document.querySelectorAll('[data-en][data-ru]');
+            const inputElement = document.getElementById('messageInput');
+            
+            let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(currentLang);
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    if (newLang !== currentLang) {
+                        switchLanguage(newLang);
+                        currentLang = newLang;
+                        localStorage.setItem('preferredLanguage', newLang);
+                    }
+                });
+            });
+            
+            function switchLanguage(lang) {
+                elementsWithTranslations.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        element.innerHTML = translation;
+                    }
+                });
+                
+                // Update input placeholder
+                if (inputElement) {
+                    const placeholder = inputElement.getAttribute(`data-${lang}-placeholder`);
+                    if (placeholder) {
+                        inputElement.placeholder = placeholder;
+                    }
+                }
+                
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+            }
+        }
+
+        // Module tabs functionality
+        function initModuleTabs() {
+            const tabs = document.querySelectorAll('.module-tab');
+            const contents = document.querySelectorAll('.module-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const module = this.getAttribute('data-module');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.querySelector(`[data-content="${module}"]`).classList.add('active');
+                });
+            });
+        }
+
+        // Chatbot functionality
+        function initChatbot() {
+            const toggle = document.getElementById('chatbotToggle');
+            const window = document.getElementById('chatbotWindow');
+            const sendBtn = document.getElementById('sendBtn');
+            const messageInput = document.getElementById('messageInput');
+            const messagesContainer = document.getElementById('chatMessages');
+
+            // Toggle chatbot window
+            toggle.addEventListener('click', function() {
+                window.classList.toggle('active');
+            });
+
+            // Send message functionality
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, 'user');
+                    messageInput.value = '';
+                    
+                    // Simulate AI response
+                    setTimeout(() => {
+                        addAIResponse(message);
+                    }, 1000);
+                }
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function addMessage(text, type = 'ai') {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            function addAIResponse(userMessage) {
+                let response = '';
+                const lowerMessage = userMessage.toLowerCase();
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                
+                if (lowerMessage.includes('scout') || lowerMessage.includes('поиск')) {
+                    response = currentLang === 'en' ? 
+                        'AIR Scout processes product search with 94% accuracy. The module is active and serves 2.4k requests per day.' :
+                        'AIR Scout обрабатывает поиск продуктов с точностью 94%. Модуль активен и обслуживает 2,4к запросов в день.';
+                } else if (lowerMessage.includes('match') || lowerMessage.includes('сопоставление')) {
+                    response = currentLang === 'en' ? 
+                        'AIR Match shows 91% configuration accuracy. The system is active and works in real time.' :
+                        'AIR Match показывает 91% точности конфигурации. Система активна и работает в реальном времени.';
+                } else if (lowerMessage.includes('status') || lowerMessage.includes('статус')) {
+                    response = currentLang === 'en' ? 
+                        'Active modules: AIR Scout and AIR Match. In development: Analytics Dashboard and Optimization AI.' :
+                        'Активные модули: AIR Scout и AIR Match. В разработке: Analytics Dashboard и Optimization AI.';
+                } else if (lowerMessage.includes('help') || lowerMessage.includes('помощь')) {
+                    response = currentLang === 'en' ? 
+                        'I can help with information about modules, their status, metrics and development plans. Just ask about a specific module!' :
+                        'Я могу помочь с информацией о модулях, их статусе, метриках и планах развития. Просто спросите о конкретном модуле!';
+                } else {
+                    response = currentLang === 'en' ? 
+                        'Thank you for your question! I work with information about AIR Dealer modules. Ask about module status, metrics or development plans.' :
+                        'Спасибо за вопрос! Я работаю с информацией о модулях AIR Dealer. Спросите о статусе модулей, метриках или планах развития.';
+                }
+                
+                addMessage(response, 'ai');
+            }
+        }
+
+        // Animation initialization
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe module cards
+            document.querySelectorAll('.module-card').forEach((card, index) => {
+                card.classList.add('fade-in');
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+        }
+    </script>
+</body>
+</html>

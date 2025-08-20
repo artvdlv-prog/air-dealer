@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start presentation.html)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(gh:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(start dashboard.html)",
+      "Bash(start account.html)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR Dealer - Account</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Color variables */
+        :root {
+            --primary-white: #FFFFFF;
+            --deep-graphite: #1A1A1A;
+            --signature-blue: #1464F4;
+            --warm-gray: #F4F4F4;
+            --lemon: #F4E146;
+            --turquoise: #46F4E1;
+            --light-gray: #E5E5E5;
+            --orange: #FF6B35;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-graphite);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--deep-graphite);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-item.active {
+            color: var(--signature-blue);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+        }
+
+        /* Account Container */
+        .account-container {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: var(--warm-gray);
+        }
+
+        .account-header {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--primary-white);
+            margin-bottom: 3rem;
+        }
+
+        .account-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .account-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+            text-transform: none;
+        }
+
+        /* Account Navigation */
+        .account-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        .account-nav-item {
+            background: var(--primary-white);
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 1.2rem 2.5rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .account-nav-item:first-child {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+
+        .account-nav-item:last-child {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .account-nav-item:not(:first-child) {
+            border-left: none;
+        }
+
+        .account-nav-item:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+            transform: translateY(-2px);
+        }
+
+        .account-nav-item.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Account Content */
+        .account-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .content-section {
+            display: none;
+            background: var(--primary-white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Profile Section */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-avatar {
+            text-align: center;
+        }
+
+        .avatar-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 0 auto 1rem;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-transform: none;
+            font-weight: 400;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--warm-gray);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--signature-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--deep-graphite);
+            padding: 0.75rem 1rem;
+            background: var(--warm-gray);
+            border-radius: 6px;
+            border: 1px solid var(--light-gray);
+        }
+
+        /* Settings Section */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .setting-card {
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .setting-card:hover {
+            border-color: var(--signature-blue);
+            transform: translateY(-2px);
+        }
+
+        .setting-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .setting-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .setting-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--signature-blue);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(26px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .account-container {
+                padding-top: 90px;
+            }
+
+            .account-title {
+                font-size: 2rem;
+            }
+
+            .account-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .account-nav-item {
+                border-radius: 8px !important;
+                border: 2px solid var(--light-gray) !important;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+                margin: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">AIR DEALER</a>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="index.html#problem" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="index.html#agents" class="nav-item" data-en="AI AGENTS" data-ru="ИИ АГЕНТЫ">AI AGENTS</a>
+            <a href="index.html#dashboard" class="nav-item" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
+            <a href="#" class="nav-item active" data-en="ACCOUNT" data-ru="ЛИЧНЫЙ КАБИНЕТ">ACCOUNT</a>
+            <a href="index.html#contact" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+    </nav>
+
+    <!-- Account Container -->
+    <div class="account-container">
+        <!-- Account Header -->
+        <div class="account-header">
+            <h1 class="account-title" data-en="Personal Account" data-ru="Личный кабинет">Personal Account</h1>
+            <p class="account-subtitle" data-en="Manage your AIR Dealer experience" data-ru="Управление вашим опытом AIR Dealer">Manage your AIR Dealer experience</p>
+        </div>
+
+        <!-- Account Navigation -->
+        <div class="account-nav">
+            <a href="#" class="account-nav-item active" data-section="profile" data-en="👤 Profile" data-ru="👤 Профиль">
+                <span class="nav-icon">👤</span>
+                <span data-en="Profile" data-ru="Профиль">Profile</span>
+            </a>
+            <a href="dashboard.html" class="account-nav-item" data-en="📊 Dashboard" data-ru="📊 Дашборд">
+                <span class="nav-icon">📊</span>
+                <span data-en="Dashboard" data-ru="Дашборд">Dashboard</span>
+            </a>
+            <a href="#" class="account-nav-item" data-section="settings" data-en="⚙️ Settings" data-ru="⚙️ Настройки">
+                <span class="nav-icon">⚙️</span>
+                <span data-en="Settings" data-ru="Настройки">Settings</span>
+            </a>
+        </div>
+
+        <!-- Account Content -->
+        <div class="account-content">
+            <!-- Profile Section -->
+            <div class="content-section active" data-content="profile">
+                <div class="profile-grid">
+                    <div class="profile-avatar">
+                        <div class="avatar-circle">AD</div>
+                        <h2 class="profile-name" data-en="AIR Dealer User" data-ru="Пользователь AIR Dealer">AIR Dealer User</h2>
+                        <p class="profile-role" data-en="HVAC Equipment Specialist" data-ru="Специалист по HVAC оборудованию">HVAC Equipment Specialist</p>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">247</div>
+                                <div class="stat-label" data-en="Quotes Generated" data-ru="Созданных предложений">Quotes Generated</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$2.4M</div>
+                                <div class="stat-label" data-en="Total Value" data-ru="Общая стоимость">Total Value</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">94%</div>
+                                <div class="stat-label" data-en="Success Rate" data-ru="Успешность">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">30d</div>
+                                <div class="stat-label" data-en="Member Since" data-ru="С нами">Member Since</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-info">
+                        <div class="info-group">
+                            <label class="info-label" data-en="Company" data-ru="Компания">Company</label>
+                            <div class="info-value">HVAC Solutions Pro</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <label class="info-label" data-en="Email" data-ru="Email">Email</label>
+                            <div class="info-value">user@hvacpro.com</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <label class="info-label" data-en="Location" data-ru="Местоположение">Location</label>
+                            <div class="info-value" data-en="New York, USA" data-ru="Москва, Россия">New York, USA</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <label class="info-label" data-en="Subscription" data-ru="Подписка">Subscription</label>
+                            <div class="info-value" data-en="Professional Plan" data-ru="Профессиональный план">Professional Plan</div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <label class="info-label" data-en="Active Agents" data-ru="Активные агенты">Active Agents</label>
+                            <div class="info-value">AIR Scout, AIR Match</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="content-section" data-content="settings">
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="Email Notifications" data-ru="Email уведомления">Email Notifications</h3>
+                        <p class="setting-description" data-en="Receive email updates about quotes and system status" data-ru="Получать email обновления о предложениях и статусе системы">Receive email updates about quotes and system status</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch active" data-setting="notifications"></div>
+                            <span data-en="Enabled" data-ru="Включено">Enabled</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="AI Recommendations" data-ru="ИИ рекомендации">AI Recommendations</h3>
+                        <p class="setting-description" data-en="Allow AI agents to provide product recommendations" data-ru="Разрешить ИИ агентам предоставлять рекомендации продуктов">Allow AI agents to provide product recommendations</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch active" data-setting="ai-recommendations"></div>
+                            <span data-en="Enabled" data-ru="Включено">Enabled</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="Auto-Save Quotes" data-ru="Автосохранение предложений">Auto-Save Quotes</h3>
+                        <p class="setting-description" data-en="Automatically save quote drafts while working" data-ru="Автоматически сохранять черновики предложений во время работы">Automatically save quote drafts while working</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch active" data-setting="auto-save"></div>
+                            <span data-en="Enabled" data-ru="Включено">Enabled</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="Advanced Analytics" data-ru="Продвинутая аналитика">Advanced Analytics</h3>
+                        <p class="setting-description" data-en="Enable detailed performance analytics and insights" data-ru="Включить детальную аналитику производительности и инсайты">Enable detailed performance analytics and insights</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch" data-setting="analytics"></div>
+                            <span data-en="Disabled" data-ru="Отключено">Disabled</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="Dark Mode" data-ru="Темная тема">Dark Mode</h3>
+                        <p class="setting-description" data-en="Switch to dark theme for comfortable night work" data-ru="Переключиться на темную тему для комфортной работы ночью">Switch to dark theme for comfortable night work</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch" data-setting="dark-mode"></div>
+                            <span data-en="Disabled" data-ru="Отключено">Disabled</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3 class="setting-title" data-en="API Access" data-ru="Доступ к API">API Access</h3>
+                        <p class="setting-description" data-en="Enable API access for third-party integrations" data-ru="Включить доступ к API для сторонних интеграций">Enable API access for third-party integrations</p>
+                        <div class="setting-control">
+                            <div class="toggle-switch" data-setting="api-access"></div>
+                            <span data-en="Disabled" data-ru="Отключено">Disabled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Account page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            initAccountNavigation();
+            initLanguageToggle();
+            initSettingsToggles();
+            initAnimations();
+        });
+
+        // Account navigation
+        function initAccountNavigation() {
+            const navItems = document.querySelectorAll('.account-nav-item[data-section]');
+            const contentSections = document.querySelectorAll('.content-section[data-content]');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    
+                    // Remove active class from all nav items and sections
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    contentSections.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked item and corresponding section
+                    this.classList.add('active');
+                    document.querySelector(`[data-content="${section}"]`).classList.add('active');
+                });
+            });
+        }
+
+        // Settings toggles
+        function initSettingsToggles() {
+            const toggles = document.querySelectorAll('.toggle-switch');
+            
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const label = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Update label text based on current language
+                    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                    if (isActive) {
+                        label.textContent = currentLang === 'en' ? 'Enabled' : 'Включено';
+                    } else {
+                        label.textContent = currentLang === 'en' ? 'Disabled' : 'Отключено';
+                    }
+                });
+            });
+        }
+
+        // Language switching functionality
+        function initLanguageToggle() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsWithTranslations = document.querySelectorAll('[data-en][data-ru]');
+            
+            let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(currentLang);
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    if (newLang !== currentLang) {
+                        switchLanguage(newLang);
+                        currentLang = newLang;
+                        localStorage.setItem('preferredLanguage', newLang);
+                        updateToggleLabels(newLang);
+                    }
+                });
+            });
+            
+            function switchLanguage(lang) {
+                elementsWithTranslations.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        element.innerHTML = translation;
+                    }
+                });
+                
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+            }
+        }
+
+        function updateToggleLabels(lang) {
+            const toggles = document.querySelectorAll('.toggle-switch');
+            toggles.forEach(toggle => {
+                const label = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+                
+                if (isActive) {
+                    label.textContent = lang === 'en' ? 'Enabled' : 'Включено';
+                } else {
+                    label.textContent = lang === 'en' ? 'Disabled' : 'Отключено';
+                }
+            });
+        }
+
+        // Animation initialization
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.setting-card, .profile-avatar, .profile-info').forEach((el, index) => {
+                el.classList.add('fade-in');
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+        }
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
