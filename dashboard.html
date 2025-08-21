@@ -176,9 +176,9 @@
         /* Module Content */
         .module-content {
             display: none;
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .module-content.active {
@@ -191,6 +191,1291 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+        }
+
+        /* Equipment Search Block */
+        .equipment-search {
+            background: var(--primary-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .search-header {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            padding: 1.5rem 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .search-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .header-ai-search {
+            flex-shrink: 0;
+        }
+
+        .ai-search-box {
+            min-width: 500px; /* увеличено еще больше */
+        }
+
+        .ai-search-input-wrapper {
+            display: flex;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 0.25rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .ai-search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1rem;
+            color: var(--primary-white);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .ai-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .ai-search-btn {
+            background: var(--primary-white);
+            color: var(--signature-blue);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .ai-search-btn:hover {
+            background: var(--lemon);
+            transform: scale(1.05);
+        }
+
+        .ai-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Responsive AI Search */
+        @media (max-width: 1200px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .ai-search-box {
+                min-width: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-header {
+                padding: 1rem;
+            }
+
+            .ai-search-box {
+                min-width: 380px;
+            }
+
+            .ai-search-input {
+                font-size: 0.8rem;
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-search-box {
+                min-width: 300px;
+            }
+        }
+
+        /* Scout Sub-tabs */
+        .scout-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding: 0 2rem;
+        }
+
+        .scout-tab {
+            background: var(--warm-gray);
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 1rem 2rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+            min-width: 180px;
+        }
+
+        .scout-tab:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .scout-tab:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .scout-tab:not(:first-child) {
+            border-left: none;
+        }
+
+        .scout-tab:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .scout-tab.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .scout-content {
+            display: none;
+        }
+
+        .scout-content.active {
+            display: block;
+        }
+
+        /* AI Chat Interface */
+        .ai-search-interface {
+            margin-bottom: 2rem;
+        }
+
+        .ai-chat-container {
+            background: var(--primary-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .ai-chat-messages {
+            padding: 2rem;
+            max-height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .ai-message {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--signature-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .ai-message-content {
+            background: var(--warm-gray);
+            padding: 1rem 1.5rem;
+            border-radius: 18px;
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .ai-chat-input {
+            display: flex;
+            padding: 1.5rem 2rem;
+            gap: 1rem;
+        }
+
+        .ai-chat-input-field {
+            flex: 1;
+            border: 2px solid var(--light-gray);
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .ai-chat-input-field:focus {
+            border-color: var(--signature-blue);
+        }
+
+        .ai-chat-send-btn {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-chat-send-btn:hover {
+            background: var(--deep-graphite);
+            transform: scale(1.05);
+        }
+
+        /* Analytics Charts */
+        .analytics-charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-container {
+            background: var(--primary-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-graphite);
+        }
+
+        .chart-placeholder {
+            text-align: center;
+        }
+
+        .chart-mock {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .chart-bar {
+            width: 30px;
+            background: linear-gradient(135deg, var(--signature-blue), var(--turquoise));
+            border-radius: 4px 4px 0 0;
+            animation: growBar 1s ease-out;
+        }
+
+        @keyframes growBar {
+            from { height: 0; }
+        }
+
+        .pie-chart-mock {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: conic-gradient(
+                var(--signature-blue) 0deg 126deg,
+                var(--success-green) 126deg 216deg,
+                var(--orange) 216deg 288deg,
+                var(--lemon) 288deg 360deg
+            );
+            position: relative;
+        }
+
+        .chart-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Responsive Scout Tabs */
+        @media (max-width: 768px) {
+            .scout-tabs {
+                padding: 0 1rem;
+            }
+
+            .scout-tab {
+                min-width: 150px;
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .ai-chat-messages {
+                padding: 1rem;
+            }
+
+            .ai-chat-input {
+                padding: 1rem;
+            }
+
+            .analytics-charts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Brand Tabs */
+        .brand-tabs {
+            display: flex;
+            background: var(--warm-gray);
+            border-bottom: 1px solid var(--light-gray);
+            overflow-x: auto;
+            padding: 0 1rem;
+        }
+
+        .brand-tab {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            position: relative;
+            color: #666;
+        }
+
+        .brand-tab.active {
+            color: var(--signature-blue);
+            background: var(--primary-white);
+        }
+
+        .brand-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--signature-blue);
+        }
+
+        .brand-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--deep-graphite);
+        }
+
+        /* Brand discount indicator */
+        .brand-discount {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            background: var(--primary-white);
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 2rem;
+        }
+
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3rem;
+        }
+
+        .discount-settings,
+        .currency-settings {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .setting-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .setting-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--deep-graphite);
+            white-space: nowrap;
+        }
+
+        .discount-input,
+        .rate-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .discount-input:focus,
+        .rate-input:focus {
+            outline: none;
+            border-color: var(--signature-blue);
+        }
+
+        .currency-select {
+            width: 120px;
+            padding: 0.5rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: var(--primary-white);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .currency-select:focus {
+            outline: none;
+            border-color: var(--signature-blue);
+        }
+
+        .setting-unit {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .exchange-rates {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .rate-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rate-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .rate-update-btn {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border: none;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rate-update-btn:hover {
+            background: var(--deep-graphite);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Settings Panel */
+        @media (max-width: 1200px) {
+            .settings-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .discount-settings,
+            .currency-settings {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .exchange-rates {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .settings-panel {
+                padding: 1rem;
+            }
+
+            .discount-settings,
+            .currency-settings {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .setting-group {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .exchange-rates {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+            }
+        }
+
+        /* Search Layout */
+        .search-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 0;
+        }
+
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: var(--warm-gray);
+            padding: 1.5rem 1rem;
+            border-right: 1px solid var(--light-gray);
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--deep-graphite);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--light-gray);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .filter-checkbox.checked {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+        }
+
+        .filter-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .filter-range {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .filter-input {
+            width: 60px;
+            padding: 0.4rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Results Area */
+        .results-area {
+            padding: 1.5rem 1rem;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .results-count {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .sort-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: var(--primary-white);
+        }
+
+        /* Product List */
+        .products-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .product-card {
+            background: var(--primary-white);
+            border: 1px solid var(--light-gray);
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:last-child {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .product-card:hover {
+            background: rgba(20, 100, 244, 0.02);
+            border-color: var(--signature-blue);
+            z-index: 2;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 60px;
+            background: var(--warm-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #999;
+            margin-right: 1.5rem;
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image:hover {
+            transform: scale(3);
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--signature-blue);
+        }
+
+        .product-info {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 2fr 0.8fr 0.8fr 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .product-details {
+            min-width: 0;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--deep-graphite);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-specs {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .product-prices {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: right;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            gap: 0.5rem;
+        }
+
+        .price-label {
+            color: #666;
+            font-size: 0.7rem;
+        }
+
+        .price-value {
+            font-weight: 600;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .price-retail {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .price-purchase {
+            color: var(--success-green);
+        }
+
+        .price-sale {
+            color: var(--signature-blue);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .product-capacity {
+            text-align: center;
+            font-weight: 600;
+            color: var(--deep-graphite);
+        }
+
+        .capacity-value {
+            font-size: 1rem;
+        }
+
+        .capacity-label {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        .product-energy {
+            text-align: center;
+        }
+
+        .energy-class {
+            background: var(--success-green);
+            color: var(--primary-white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .energy-class.a-plus-plus-plus {
+            background: var(--success-green);
+        }
+
+        .energy-class.a-plus-plus {
+            background: #7CB342;
+        }
+
+        .energy-class.a-plus {
+            background: #FFA726;
+        }
+
+        .energy-class.a {
+            background: #FF8A65;
+        }
+
+        .product-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            min-width: 80px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--light-gray);
+            background: var(--primary-white);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .action-icon {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--deep-graphite);
+        }
+
+        .action-btn:hover {
+            border-color: var(--signature-blue);
+            background: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .action-btn:hover .action-icon {
+            color: var(--primary-white);
+        }
+
+        /* Specific button states */
+        .btn-select.selected {
+            background: var(--success-green);
+            border-color: var(--success-green);
+        }
+
+        .btn-select.selected .action-icon {
+            color: var(--primary-white);
+        }
+
+        .btn-favorite.favorited {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .btn-favorite.favorited .action-icon {
+            color: var(--primary-white);
+        }
+
+        .btn-compare.comparing {
+            background: var(--turquoise);
+            border-color: var(--turquoise);
+        }
+
+        .btn-compare.comparing .action-icon {
+            color: var(--primary-white);
+        }
+
+        /* Tooltip enhancement */
+        .action-btn[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-graphite);
+            color: var(--primary-white);
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            z-index: 10;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeInTooltip 0.3s ease-in-out forwards;
+        }
+
+        .action-btn[title]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: var(--deep-graphite);
+            z-index: 10;
+            margin-bottom: 0.1rem;
+            opacity: 0;
+            animation: fadeInTooltip 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeInTooltip {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Product Modal */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--primary-white);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-graphite);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--signature-blue);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .product-image-large {
+            width: 150px;
+            height: 100px;
+            background: var(--warm-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+            border-radius: 8px;
+            margin: 0 auto 2rem;
+        }
+
+        .product-details-full p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .price-details {
+            background: var(--warm-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .price-details p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Selected Items Panel */
+        .selected-panel {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: var(--deep-graphite);
+            color: var(--primary-white);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .selected-panel.active {
+            display: flex;
+        }
+
+        .selected-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .selected-count {
+            font-weight: 600;
+        }
+
+        .selected-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--lemon);
+        }
+
+        .btn-quote {
+            background: var(--lemon);
+            color: var(--deep-graphite);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-quote:hover {
+            background: var(--turquoise);
+        }
+
+        /* List Header */
+        .list-header {
+            display: grid;
+            grid-template-columns: 80px 2fr 0.8fr 0.8fr 1fr 100px;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--warm-gray);
+            border: 1px solid var(--light-gray);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--deep-graphite);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .header-cell {
+            padding: 0.5rem 0;
+        }
+
+        .header-cell.text-center {
+            text-align: center;
+        }
+
+        .header-cell.text-right {
+            text-align: right;
+        }
+
+        /* Responsive Design for Search */
+        @media (max-width: 1366px) {
+            .search-layout {
+                grid-template-columns: 220px 1fr;
+            }
+
+            .filters-sidebar {
+                padding: 1rem 0.75rem;
+            }
+
+            .results-area {
+                padding: 1rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .product-info {
+                grid-template-columns: 2fr 0.8fr 1fr auto;
+                gap: 0.75rem;
+            }
+
+            .list-header {
+                grid-template-columns: 80px 2fr 0.8fr 1fr 100px;
+                gap: 0.75rem;
+            }
+
+            .product-energy {
+                display: none;
+            }
+
+            .list-header .header-energy {
+                display: none;
+            }
+
+            .search-layout {
+                grid-template-columns: 200px 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .product-info {
+                grid-template-columns: 2fr 0.7fr 0.9fr auto;
+                gap: 0.5rem;
+            }
+
+            .list-header {
+                grid-template-columns: 60px 2fr 0.7fr 0.9fr 90px;
+                gap: 0.5rem;
+            }
+
+            .product-image {
+                width: 60px;
+                height: 45px;
+                margin-right: 1rem;
+            }
+
+            .product-actions {
+                min-width: 70px;
+            }
+
+            .action-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .action-icon {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .product-info {
+                grid-template-columns: 1fr auto;
+                gap: 1rem;
+            }
+
+            .list-header {
+                grid-template-columns: 80px 1fr 120px;
+                gap: 1rem;
+            }
+
+            .product-capacity,
+            .product-prices {
+                display: none;
+            }
+
+            .header-capacity,
+            .header-prices {
+                display: none;
+            }
+
+            .brand-tabs {
+                padding: 0 0.5rem;
+            }
+
+            .brand-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .selected-panel {
+                left: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .product-image {
+                width: 60px;
+                height: 45px;
+                margin-right: 1rem;
+            }
+
+            .product-image:hover {
+                transform: scale(2.5);
+            }
+
+            .product-actions {
+                min-width: 70px;
+            }
+
+            .action-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .action-icon {
+                font-size: 0.8rem;
+            }
         }
 
         .module-card {
@@ -497,6 +1782,28 @@
             100% { transform: rotate(360deg); }
         }
 
+        @keyframes slideIn {
+            from { 
+                transform: translateX(100%); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateX(0); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes slideOut {
+            from { 
+                transform: translateX(0); 
+                opacity: 1; 
+            }
+            to { 
+                transform: translateX(100%); 
+                opacity: 0; 
+            }
+        }
+
         /* Animations */
         .fade-in {
             opacity: 0;
@@ -548,68 +1855,393 @@
 
         <!-- AIR Scout Module -->
         <div class="module-content active" data-content="scout">
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="card-header">
-                        <div class="card-icon">⚙️</div>
-                        <div>
-                            <h3 class="card-title" data-en="Product Discovery Engine" data-ru="Система поиска продуктов">Product Discovery Engine</h3>
+            <!-- Scout Sub-tabs -->
+            <div class="scout-tabs">
+                <button class="scout-tab active" data-scout-module="product-search" data-en="Product Search System" data-ru="Система поиска продуктов">Product Search System</button>
+                <button class="scout-tab" data-scout-module="smart-search" data-en="Smart AI Search" data-ru="Умный поиск ИИ">Smart AI Search</button>
+                <button class="scout-tab" data-scout-module="analytics" data-en="Analytics Dashboard" data-ru="Панель аналитики">Analytics Dashboard</button>
+            </div>
+
+            <!-- Product Search System -->
+            <div class="scout-content active" data-scout-content="product-search">
+                <!-- Equipment Search Block -->
+                <div class="equipment-search">
+                    <div class="search-header">
+                        <div class="header-content">
+                            <div class="header-text">
+                                <h2 class="search-title" data-en="Equipment Search & Selection" data-ru="Поиск и подбор оборудования">Equipment Search & Selection</h2>
+                                <p class="search-subtitle" data-en="Intelligent HVAC equipment discovery with AI-powered matching" data-ru="Интеллектуальный поиск HVAC оборудования с ИИ сопоставлением">Intelligent HVAC equipment discovery with AI-powered matching</p>
+                            </div>
+                            <div class="header-ai-search">
+                                <div class="ai-search-box">
+                                    <div class="ai-search-input-wrapper">
+                                        <input type="text" class="ai-search-input" id="aiSearchInput" placeholder="Ask AI to find equipment..." data-en-placeholder="Ask AI to find equipment..." data-ru-placeholder="Спросите ИИ об оборудовании...">
+                                        <button class="ai-search-btn" id="aiSearchBtn">
+                                            <span class="ai-icon">🤖</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="card-description" data-en="Intelligent search and matching system for HVAC equipment using AI algorithms" data-ru="Интеллектуальная система поиска и сопоставления HVAC оборудования с использованием AI алгоритмов">Intelligent search and matching system for HVAC equipment using AI algorithms</p>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <div class="metric-value">15,847</div>
-                            <div class="metric-label" data-en="Products" data-ru="Продуктов">Products</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">94%</div>
-                            <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
-                        </div>
-                    </div>
-                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+
+                <!-- Brand Tabs -->
+                <div class="brand-tabs">
+                    <button class="brand-tab active" data-brand="daikin">Daikin</button>
+                    <button class="brand-tab" data-brand="mitsubishi">Mitsubishi</button>
+                    <button class="brand-tab" data-brand="lg">LG</button>
+                    <button class="brand-tab" data-brand="panasonic">Panasonic</button>
+                    <button class="brand-tab" data-brand="toshiba">Toshiba</button>
+                    <button class="brand-tab" data-brand="fujitsu">Fujitsu</button>
+                    <button class="brand-tab" data-brand="carrier">Carrier</button>
+                    <button class="brand-tab" data-brand="york">York</button>
+                    <button class="brand-tab" data-brand="trane">Trane</button>
+                    <button class="brand-tab" data-brand="lennox">Lennox</button>
                 </div>
 
-                <div class="module-card">
-                    <div class="card-header">
-                        <div class="card-icon">🔍</div>
-                        <div>
-                            <h3 class="card-title">Smart Search API</h3>
+                <!-- Discount & Currency Settings Panel -->
+                <div class="settings-panel">
+                    <div class="settings-row">
+                        <div class="discount-settings">
+                            <div class="setting-group">
+                                <label class="setting-label" data-en="Dealer Discount (D):" data-ru="Скидка дилера (D):">Dealer Discount (D):</label>
+                                <input type="number" class="discount-input" id="dealerDiscount" placeholder="0" min="0" max="100" step="0.1">
+                                <span class="setting-unit">%</span>
+                            </div>
+                            <div class="setting-group">
+                                <label class="setting-label" data-en="Client Discount (C):" data-ru="Скидка клиента (C):">Client Discount (C):</label>
+                                <input type="number" class="discount-input" id="clientDiscount" placeholder="0" min="0" max="100" step="0.1">
+                                <span class="setting-unit">%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="currency-settings">
+                            <div class="setting-group">
+                                <label class="setting-label" data-en="Currency:" data-ru="Валюта:">Currency:</label>
+                                <select class="currency-select" id="currencySelect">
+                                    <option value="usd" selected>USD ($)</option>
+                                    <option value="rub" data-en="RUB (₽)" data-ru="RUB (₽)">RUB (₽)</option>
+                                    <option value="eur" data-en="EUR (€)" data-ru="EUR (€)">EUR (€)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="exchange-rates">
+                                <div class="rate-group">
+                                    <label class="rate-label">USD/RUB:</label>
+                                    <input type="number" class="rate-input" id="usdRubRate" value="75.50" step="0.01">
+                                    <button class="rate-update-btn" onclick="fetchExchangeRate('usd', 'rub')" title="Update rate">🔄</button>
+                                </div>
+                                <div class="rate-group">
+                                    <label class="rate-label">USD/EUR:</label>
+                                    <input type="number" class="rate-input" id="usdEurRate" value="0.85" step="0.001">
+                                    <button class="rate-update-btn" onclick="fetchExchangeRate('usd', 'eur')" title="Update rate">🔄</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="card-description">API для интеллектуального поиска продуктов с поддержкой естественного языка</p>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <div class="metric-value">2.4k</div>
-                            <div class="metric-label">Requests/day</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">0.8s</div>
-                            <div class="metric-label">Avg Response</div>
-                        </div>
-                    </div>
-                    <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
                 </div>
 
-                <div class="module-card">
-                    <div class="card-header">
-                        <div class="card-icon">📊</div>
-                        <div>
-                            <h3 class="card-title">Analytics Dashboard</h3>
+                <!-- Search Layout -->
+                <div class="search-layout">
+                    <!-- Filters Sidebar -->
+                    <div class="filters-sidebar">
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Type" data-ru="Тип">Type</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="split"></div>
+                                    <label class="filter-label" data-en="Split Systems" data-ru="Сплит-системы">Split Systems</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="multi"></div>
+                                    <label class="filter-label" data-en="Multi Split" data-ru="Мульти сплит">Multi Split</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="vrf"></div>
+                                    <label class="filter-label" data-en="VRF Systems" data-ru="VRF системы">VRF Systems</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="central"></div>
+                                    <label class="filter-label" data-en="Central AC" data-ru="Центральные кондиционеры">Central AC</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Capacity" data-ru="Мощность">Capacity</h3>
+                            <div class="filter-group">
+                                <div class="filter-range">
+                                    <input type="number" class="filter-input" placeholder="От" data-en-placeholder="From" data-ru-placeholder="От" />
+                                    <span>-</span>
+                                    <input type="number" class="filter-input" placeholder="До" data-en-placeholder="To" data-ru-placeholder="До" />
+                                    <span data-en="BTU" data-ru="БТЕ">BTU</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Energy Class" data-ru="Класс энергоэффективности">Energy Class</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="a+++"></div>
+                                    <label class="filter-label">A+++</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="a++"></div>
+                                    <label class="filter-label">A++</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="a+"></div>
+                                    <label class="filter-label">A+</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="a"></div>
+                                    <label class="filter-label">A</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Features" data-ru="Особенности">Features</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="inverter"></div>
+                                    <label class="filter-label" data-en="Inverter" data-ru="Инвертор">Inverter</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="wifi"></div>
+                                    <label class="filter-label" data-en="Wi-Fi Control" data-ru="Wi-Fi управление">Wi-Fi Control</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="heating"></div>
+                                    <label class="filter-label" data-en="Heating" data-ru="Обогрев">Heating</label>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-checkbox" data-filter="quiet"></div>
+                                    <label class="filter-label" data-en="Quiet Mode" data-ru="Тихий режим">Quiet Mode</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="card-description">Аналитическая панель для отслеживания эффективности поиска</p>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <div class="metric-value">127</div>
-                            <div class="metric-label">Reports</div>
+
+                    <!-- Results Area -->
+                    <div class="results-area">
+                        <div class="results-header">
+                            <div class="results-count" data-en="Found 247 products" data-ru="Найдено 247 товаров">Found 247 products</div>
+                            <select class="sort-select">
+                                <option data-en="Sort by price" data-ru="Сортировать по цене">Sort by price</option>
+                                <option data-en="Sort by rating" data-ru="По рейтингу">Sort by rating</option>
+                                <option data-en="Sort by capacity" data-ru="По мощности">Sort by capacity</option>
+                            </select>
                         </div>
-                        <div class="metric">
-                            <div class="metric-value">98%</div>
-                            <div class="metric-label">Uptime</div>
+
+                        <!-- List Header -->
+                        <div class="list-header">
+                            <div class="header-cell"></div>
+                            <div class="header-cell" data-en="Product" data-ru="Товар">Product</div>
+                            <div class="header-cell text-center header-capacity" data-en="Capacity" data-ru="Мощность">Capacity</div>
+                            <div class="header-cell text-center header-energy" data-en="Energy" data-ru="Энерг. класс">Energy</div>
+                            <div class="header-cell text-right header-prices" data-en="Prices" data-ru="Цены">Prices</div>
+                            <div class="header-cell text-center" data-en="Actions" data-ru="Действия">Actions</div>
+                        </div>
+
+                        <!-- Products List -->
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Sample products will be generated by JavaScript -->
                         </div>
                     </div>
-                    <div class="card-status status-development">Development</div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Smart AI Search -->
+            <div class="scout-content" data-scout-content="smart-search">
+                <div class="smart-search-block">
+                    <div class="search-header">
+                        <div class="header-content">
+                            <div class="header-text">
+                                <h2 class="search-title" data-en="Smart AI Search Engine" data-ru="Умный поиск ИИ">Smart AI Search Engine</h2>
+                                <p class="search-subtitle" data-en="Natural language processing for HVAC equipment discovery" data-ru="Обработка естественного языка для поиска HVAC оборудования">Natural language processing for HVAC equipment discovery</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Search Interface -->
+                    <div class="ai-search-interface">
+                        <div class="ai-chat-container">
+                            <div class="ai-chat-messages" id="aiChatMessages">
+                                <div class="ai-message">
+                                    <div class="ai-avatar">🤖</div>
+                                    <div class="ai-message-content" data-en="Hello! I can help you find HVAC equipment using natural language. Try asking: 'Find quiet split systems with heating for a 25m² room'" data-ru="Привет! Я помогу найти HVAC оборудование через естественный язык. Попробуйте спросить: 'Найди тихие сплит-системы с обогревом для комнаты 25м²'">Hello! I can help you find HVAC equipment using natural language. Try asking: 'Find quiet split systems with heating for a 25m² room'</div>
+                                </div>
+                            </div>
+                            <div class="ai-chat-input">
+                                <input type="text" class="ai-chat-input-field" id="aiChatInput" placeholder="Ask me anything about HVAC equipment..." data-en-placeholder="Ask me anything about HVAC equipment..." data-ru-placeholder="Спросите меня о HVAC оборудовании...">
+                                <button class="ai-chat-send-btn" id="aiChatSendBtn">➤</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Features Cards -->
+                    <div class="module-grid">
+                        <div class="module-card">
+                            <div class="card-header">
+                                <div class="card-icon">🧠</div>
+                                <div>
+                                    <h3 class="card-title" data-en="Natural Language Processing" data-ru="Обработка естественного языка">Natural Language Processing</h3>
+                                </div>
+                            </div>
+                            <p class="card-description" data-en="Advanced NLP algorithms understand complex queries in multiple languages" data-ru="Продвинутые NLP алгоритмы понимают сложные запросы на нескольких языках">Advanced NLP algorithms understand complex queries in multiple languages</p>
+                            <div class="card-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">97%</div>
+                                    <div class="metric-label" data-en="Accuracy" data-ru="Точность">Accuracy</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">15+</div>
+                                    <div class="metric-label" data-en="Languages" data-ru="Языков">Languages</div>
+                                </div>
+                            </div>
+                            <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="card-header">
+                                <div class="card-icon">🎯</div>
+                                <div>
+                                    <h3 class="card-title" data-en="Contextual Understanding" data-ru="Контекстное понимание">Contextual Understanding</h3>
+                                </div>
+                            </div>
+                            <p class="card-description" data-en="AI understands context, preferences, and technical requirements" data-ru="ИИ понимает контекст, предпочтения и технические требования">AI understands context, preferences, and technical requirements</p>
+                            <div class="card-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">1.2s</div>
+                                    <div class="metric-label" data-en="Response Time" data-ru="Время ответа">Response Time</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">89%</div>
+                                    <div class="metric-label" data-en="Satisfaction" data-ru="Удовлетворенность">Satisfaction</div>
+                                </div>
+                            </div>
+                            <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="scout-content" data-scout-content="analytics">
+                <div class="analytics-block">
+                    <div class="search-header">
+                        <div class="header-content">
+                            <div class="header-text">
+                                <h2 class="search-title" data-en="Analytics Dashboard" data-ru="Панель аналитики">Analytics Dashboard</h2>
+                                <p class="search-subtitle" data-en="Advanced analytics and performance monitoring for search systems" data-ru="Продвинутая аналитика и мониторинг производительности поисковых систем">Advanced analytics and performance monitoring for search systems</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Charts -->
+                    <div class="analytics-charts">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3 data-en="Search Performance" data-ru="Производительность поиска">Search Performance</h3>
+                            </div>
+                            <div class="chart-placeholder">
+                                <div class="chart-mock">
+                                    <div class="chart-bar" style="height: 60%"></div>
+                                    <div class="chart-bar" style="height: 80%"></div>
+                                    <div class="chart-bar" style="height: 45%"></div>
+                                    <div class="chart-bar" style="height: 95%"></div>
+                                    <div class="chart-bar" style="height: 70%"></div>
+                                    <div class="chart-bar" style="height: 85%"></div>
+                                    <div class="chart-bar" style="height: 65%"></div>
+                                </div>
+                                <p class="chart-label" data-en="Daily search requests" data-ru="Ежедневные поисковые запросы">Daily search requests</p>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3 data-en="Popular Categories" data-ru="Популярные категории">Popular Categories</h3>
+                            </div>
+                            <div class="chart-placeholder">
+                                <div class="pie-chart-mock">
+                                    <div class="pie-section" style="--percentage: 35%; --color: var(--signature-blue);" data-label="Split Systems 35%"></div>
+                                    <div class="pie-section" style="--percentage: 25%; --color: var(--success-green);" data-label="Multi Split 25%"></div>
+                                    <div class="pie-section" style="--percentage: 20%; --color: var(--orange);" data-label="VRF 20%"></div>
+                                    <div class="pie-section" style="--percentage: 20%; --color: var(--lemon);" data-label="Central AC 20%"></div>
+                                </div>
+                                <p class="chart-label" data-en="Equipment type distribution" data-ru="Распределение типов оборудования">Equipment type distribution</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Stats Cards -->
+                    <div class="module-grid">
+                        <div class="module-card">
+                            <div class="card-header">
+                                <div class="card-icon">📊</div>
+                                <div>
+                                    <h3 class="card-title" data-en="Performance Monitoring" data-ru="Мониторинг производительности">Performance Monitoring</h3>
+                                </div>
+                            </div>
+                            <p class="card-description" data-en="Real-time monitoring of search performance and system health" data-ru="Мониторинг производительности поиска и состояния системы в реальном времени">Real-time monitoring of search performance and system health</p>
+                            <div class="card-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">127</div>
+                                    <div class="metric-label" data-en="Reports" data-ru="Отчетов">Reports</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">98%</div>
+                                    <div class="metric-label" data-en="Uptime" data-ru="Время работы">Uptime</div>
+                                </div>
+                            </div>
+                            <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="card-header">
+                                <div class="card-icon">📈</div>
+                                <div>
+                                    <h3 class="card-title" data-en="Usage Analytics" data-ru="Аналитика использования">Usage Analytics</h3>
+                                </div>
+                            </div>
+                            <p class="card-description" data-en="Detailed analytics on search patterns and user behavior" data-ru="Детальная аналитика паттернов поиска и поведения пользователей">Detailed analytics on search patterns and user behavior</p>
+                            <div class="card-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">2.4k</div>
+                                    <div class="metric-label" data-en="Daily Queries" data-ru="Запросов/день">Daily Queries</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">94%</div>
+                                    <div class="metric-label" data-en="Success Rate" data-ru="Успешность">Success Rate</div>
+                                </div>
+                            </div>
+                            <div class="card-status status-active" data-en="Active" data-ru="Активно">Active</div>
+                        </div>
+
+                        <div class="module-card">
+                            <div class="card-header">
+                                <div class="card-icon">🔧</div>
+                                <div>
+                                    <h3 class="card-title" data-en="System Optimization" data-ru="Оптимизация системы">System Optimization</h3>
+                                </div>
+                            </div>
+                            <p class="card-description" data-en="AI-driven optimization recommendations for better search performance" data-ru="Рекомендации по оптимизации на основе ИИ для улучшения производительности поиска">AI-driven optimization recommendations for better search performance</p>
+                            <div class="card-metrics">
+                                <div class="metric">
+                                    <div class="metric-value">15%</div>
+                                    <div class="metric-label" data-en="Improvement" data-ru="Улучшение">Improvement</div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-value">0.8s</div>
+                                    <div class="metric-label" data-en="Avg Response" data-ru="Ср. ответ">Avg Response</div>
+                                </div>
+                            </div>
+                            <div class="card-status status-development" data-en="Development" data-ru="Разработка">Development</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1048,6 +2680,15 @@
         </div>
     </div>
 
+    <!-- Selected Items Panel -->
+    <div class="selected-panel" id="selectedPanel">
+        <div class="selected-info">
+            <span class="selected-count" id="selectedCount">0 items selected</span>
+            <span class="selected-total" id="selectedTotal">$0</span>
+        </div>
+        <button class="btn-quote" id="generateQuote" data-en="Generate Quote" data-ru="Создать КП">Generate Quote</button>
+    </div>
+
     <script>
         // Dashboard JavaScript
         document.addEventListener('DOMContentLoaded', function() {
@@ -1055,7 +2696,788 @@
             initChatbot();
             initAnimations();
             initLanguageToggle();
+            initEquipmentSearch();
         });
+
+        // Equipment Search System
+        function initEquipmentSearch() {
+            initScoutTabs();
+            initBrandTabs();
+            initFilters();
+            initProductCards();
+            initSettingsPanel();
+            initAISearch();
+            initAIChat();
+            generateSampleProducts();
+        }
+
+        // Scout Sub-tabs functionality
+        function initScoutTabs() {
+            const tabs = document.querySelectorAll('.scout-tab');
+            const contents = document.querySelectorAll('.scout-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const module = this.getAttribute('data-scout-module');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.querySelector(`[data-scout-content="${module}"]`).classList.add('active');
+                });
+            });
+        }
+
+        // AI Chat functionality
+        function initAIChat() {
+            const chatSendBtn = document.getElementById('aiChatSendBtn');
+            const chatInput = document.getElementById('aiChatInput');
+            const chatMessages = document.getElementById('aiChatMessages');
+
+            function sendChatMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addChatMessage(message, 'user');
+                    chatInput.value = '';
+                    
+                    // Simulate AI response
+                    setTimeout(() => {
+                        addChatAIResponse(message);
+                    }, 1000);
+                }
+            }
+
+            if (chatSendBtn) {
+                chatSendBtn.addEventListener('click', sendChatMessage);
+            }
+
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendChatMessage();
+                    }
+                });
+            }
+
+            function addChatMessage(text, type = 'ai') {
+                if (!chatMessages) return;
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `ai-message ${type}`;
+                
+                if (type === 'user') {
+                    messageDiv.innerHTML = `
+                        <div class="ai-message-content" style="background: var(--signature-blue); color: white; margin-left: auto; max-width: 80%;">${text}</div>
+                        <div class="ai-avatar" style="background: var(--deep-graphite);">👤</div>
+                    `;
+                    messageDiv.style.flexDirection = 'row-reverse';
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-message-content">${text}</div>
+                    `;
+                }
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function addChatAIResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                let response = '';
+
+                if (lowerMessage.includes('quiet') || lowerMessage.includes('тихий')) {
+                    response = currentLang === 'en' ? 
+                        'I found several quiet HVAC systems. The Daikin FTXM series and LG Dual Inverter models are excellent for low noise operation. Would you like specific recommendations?' :
+                        'Я нашел несколько тихих HVAC систем. Серии Daikin FTXM и LG Dual Inverter отлично подходят для малошумной работы. Хотите конкретные рекомендации?';
+                } else if (lowerMessage.includes('room') || lowerMessage.includes('комнат')) {
+                    response = currentLang === 'en' ? 
+                        'For room sizing, I recommend: 25m² = 9000-12000 BTU. Daikin FTXM35R or Mitsubishi MSZ-LN25VG would be perfect. Need heating function too?' :
+                        'Для размера комнаты рекомендую: 25м² = 9000-12000 BTU. Daikin FTXM35R или Mitsubishi MSZ-LN25VG будут идеальны. Нужна также функция обогрева?';
+                } else if (lowerMessage.includes('price') || lowerMessage.includes('цен')) {
+                    response = currentLang === 'en' ? 
+                        'Based on current market data: Split systems range from $800-2500, Multi-split $1200-4000, VRF systems $3000-15000. Prices include dealer and client discounts.' :
+                        'На основе текущих рыночных данных: Сплит-системы $800-2500, Мульти-сплит $1200-4000, VRF системы $3000-15000. Цены включают скидки дилера и клиента.';
+                } else {
+                    response = currentLang === 'en' ? 
+                        `I understand you're looking for "${userMessage}". Let me analyze the requirements and suggest optimal HVAC solutions. What specific features are most important?` :
+                        `Я понимаю, что вы ищете "${userMessage}". Позвольте проанализировать требования и предложить оптимальные HVAC решения. Какие характеристики наиболее важны?`;
+                }
+                
+                addChatMessage(response, 'ai');
+            }
+        }
+
+        // AI Search Functionality
+        function initAISearch() {
+            const aiSearchBtn = document.getElementById('aiSearchBtn');
+            const aiSearchInput = document.getElementById('aiSearchInput');
+
+            function performAISearch() {
+                const query = aiSearchInput.value.trim();
+                if (query) {
+                    // Show loading state
+                    aiSearchBtn.innerHTML = '<span class="loading"></span>';
+                    aiSearchBtn.disabled = true;
+                    
+                    // Simulate AI processing
+                    setTimeout(() => {
+                        processAIQuery(query);
+                        
+                        // Reset button
+                        aiSearchBtn.innerHTML = '<span class="ai-icon">🤖</span>';
+                        aiSearchBtn.disabled = false;
+                        aiSearchInput.value = '';
+                    }, 1500);
+                }
+            }
+
+            aiSearchBtn.addEventListener('click', performAISearch);
+            aiSearchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performAISearch();
+                }
+            });
+        }
+
+        // Process AI query and apply filters
+        function processAIQuery(query) {
+            const lowerQuery = query.toLowerCase();
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+
+            // Reset all filters first
+            document.querySelectorAll('.filter-checkbox.checked').forEach(cb => {
+                cb.classList.remove('checked');
+            });
+
+            // Smart query processing
+            if (lowerQuery.includes('split') || lowerQuery.includes('сплит')) {
+                document.querySelector('[data-filter="split"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('multi') || lowerQuery.includes('мульти')) {
+                document.querySelector('[data-filter="multi"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('vrf') || lowerQuery.includes('vrv')) {
+                document.querySelector('[data-filter="vrf"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('inverter') || lowerQuery.includes('инвертор')) {
+                document.querySelector('[data-filter="inverter"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('wifi') || lowerQuery.includes('wi-fi') || lowerQuery.includes('вай-фай')) {
+                document.querySelector('[data-filter="wifi"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('heating') || lowerQuery.includes('heat') || lowerQuery.includes('обогрев') || lowerQuery.includes('тепло')) {
+                document.querySelector('[data-filter="heating"]')?.classList.add('checked');
+            }
+            
+            if (lowerQuery.includes('quiet') || lowerQuery.includes('тихий') || lowerQuery.includes('бесшумн')) {
+                document.querySelector('[data-filter="quiet"]')?.classList.add('checked');
+            }
+
+            // Energy class detection
+            if (lowerQuery.includes('a+++')) {
+                document.querySelector('[data-filter="a+++"]')?.classList.add('checked');
+            } else if (lowerQuery.includes('a++')) {
+                document.querySelector('[data-filter="a++"]')?.classList.add('checked');
+            } else if (lowerQuery.includes('a+')) {
+                document.querySelector('[data-filter="a+"]')?.classList.add('checked');
+            }
+
+            // Brand detection
+            const brands = ['daikin', 'mitsubishi', 'lg', 'panasonic', 'toshiba', 'fujitsu', 'carrier', 'york', 'trane', 'lennox'];
+            brands.forEach(brand => {
+                if (lowerQuery.includes(brand)) {
+                    const brandTab = document.querySelector(`[data-brand="${brand}"]`);
+                    if (brandTab) {
+                        // Switch to brand
+                        document.querySelectorAll('.brand-tab').forEach(tab => tab.classList.remove('active'));
+                        brandTab.classList.add('active');
+                        currentBrand = brand;
+                    }
+                }
+            });
+
+            // Capacity detection (BTU ranges)
+            const capacityMatch = lowerQuery.match(/(\d+)[\s]*(?:k|000|к)?[\s]*(?:btu|бте|bte)/i);
+            if (capacityMatch) {
+                const capacity = parseInt(capacityMatch[1]);
+                const capacityInputs = document.querySelectorAll('.filter-input');
+                if (capacityInputs.length >= 2) {
+                    if (capacity < 12) {
+                        capacityInputs[0].value = Math.max(capacity - 3, 6) * 1000;
+                        capacityInputs[1].value = (capacity + 3) * 1000;
+                    } else {
+                        capacityInputs[0].value = (capacity - 5) * 1000;
+                        capacityInputs[1].value = (capacity + 5) * 1000;
+                    }
+                }
+            }
+
+            // Apply filters and show results
+            filterProducts();
+
+            // Show AI response message
+            const message = currentLang === 'en' ? 
+                `AI Search applied filters based on: "${query}"` :
+                `ИИ поиск применил фильтры на основе: "${query}"`;
+            
+            showAIResponse(message);
+        }
+
+        // Show AI response notification
+        function showAIResponse(message) {
+            const notification = document.createElement('div');
+            notification.className = 'ai-notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--signature-blue);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                z-index: 1001;
+                max-width: 300px;
+                font-size: 0.9rem;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Settings Panel Functions
+        function initSettingsPanel() {
+            const currencySelect = document.getElementById('currencySelect');
+            const dealerDiscountInput = document.getElementById('dealerDiscount');
+            const clientDiscountInput = document.getElementById('clientDiscount');
+            const usdRubRateInput = document.getElementById('usdRubRate');
+            const usdEurRateInput = document.getElementById('usdEurRate');
+
+            // Currency change handler
+            currencySelect.addEventListener('change', function() {
+                currentCurrency = this.value;
+                exchangeRates.rub = parseFloat(usdRubRateInput.value) || 75.50;
+                exchangeRates.eur = parseFloat(usdEurRateInput.value) || 0.85;
+                filterProducts(); // Refresh product display
+            });
+
+            // Discount change handlers
+            dealerDiscountInput.addEventListener('input', function() {
+                filterProducts(); // Refresh product display
+            });
+
+            clientDiscountInput.addEventListener('input', function() {
+                filterProducts(); // Refresh product display
+            });
+
+            // Exchange rate change handlers
+            usdRubRateInput.addEventListener('input', function() {
+                exchangeRates.rub = parseFloat(this.value) || 75.50;
+                if (currentCurrency === 'rub') {
+                    filterProducts(); // Refresh if currently showing RUB
+                }
+            });
+
+            usdEurRateInput.addEventListener('input', function() {
+                exchangeRates.eur = parseFloat(this.value) || 0.85;
+                if (currentCurrency === 'eur') {
+                    filterProducts(); // Refresh if currently showing EUR
+                }
+            });
+        }
+
+        // Currency conversion function
+        function convertPrice(usdPrice) {
+            switch(currentCurrency) {
+                case 'rub':
+                    return usdPrice * exchangeRates.rub;
+                case 'eur':
+                    return usdPrice * exchangeRates.eur;
+                default:
+                    return usdPrice;
+            }
+        }
+
+        // Format price with currency symbol
+        function formatPrice(price) {
+            const convertedPrice = convertPrice(price);
+            switch(currentCurrency) {
+                case 'rub':
+                    return `₽${Math.round(convertedPrice).toLocaleString()}`;
+                case 'eur':
+                    return `€${convertedPrice.toFixed(2)}`;
+                default:
+                    return `$${convertedPrice.toFixed(0)}`;
+            }
+        }
+
+        // Apply discounts to price
+        function applyDiscounts(price, isClientPrice = false) {
+            const dealerDiscount = parseFloat(document.getElementById('dealerDiscount').value) || 0;
+            const clientDiscount = parseFloat(document.getElementById('clientDiscount').value) || 0;
+            
+            let discountedPrice = price * (1 - dealerDiscount / 100);
+            
+            if (isClientPrice) {
+                discountedPrice = discountedPrice * (1 - clientDiscount / 100);
+            }
+            
+            return discountedPrice;
+        }
+
+        // Fetch exchange rates (placeholder function)
+        function fetchExchangeRate(fromCurrency, toCurrency) {
+            // Placeholder for real API integration
+            const rates = {
+                'usd-rub': Math.random() * 10 + 70, // 70-80 range
+                'usd-eur': Math.random() * 0.2 + 0.75 // 0.75-0.95 range
+            };
+            
+            const rateKey = `${fromCurrency}-${toCurrency}`;
+            const newRate = rates[rateKey];
+            
+            if (newRate) {
+                if (toCurrency === 'rub') {
+                    document.getElementById('usdRubRate').value = newRate.toFixed(2);
+                    exchangeRates.rub = newRate;
+                } else if (toCurrency === 'eur') {
+                    document.getElementById('usdEurRate').value = newRate.toFixed(3);
+                    exchangeRates.eur = newRate;
+                }
+                
+                if (currentCurrency === toCurrency) {
+                    filterProducts(); // Refresh display if current currency updated
+                }
+            }
+        }
+
+        // Sample product data
+        const sampleProducts = [
+            {
+                id: 1,
+                title: "Daikin FTXM35R Split System",
+                specs: "12,000 BTU/h, A+++ Energy Class, Inverter",
+                brand: "daikin",
+                capacity: 12000,
+                energyClass: "a+++",
+                features: ["inverter", "wifi", "heating"],
+                type: "split",
+                retailPrice: 1299,
+                purchasePrice: 899,
+                salePrice: 1199
+            },
+            {
+                id: 2,
+                title: "Mitsubishi MSZ-LN25VG Multi Split",
+                specs: "9,000 BTU/h, A++ Energy Class, Wi-Fi Ready",
+                brand: "mitsubishi",
+                capacity: 9000,
+                energyClass: "a++",
+                features: ["wifi", "quiet"],
+                type: "multi",
+                retailPrice: 1599,
+                purchasePrice: 1199,
+                salePrice: 1459
+            },
+            {
+                id: 3,
+                title: "LG P12EN Dual Inverter",
+                specs: "12,000 BTU/h, A+++ Energy Class, Quiet Operation",
+                brand: "lg",
+                capacity: 12000,
+                energyClass: "a+++",
+                features: ["inverter", "quiet", "heating"],
+                type: "split",
+                retailPrice: 1199,
+                purchasePrice: 799,
+                salePrice: 1099
+            },
+            {
+                id: 4,
+                title: "Panasonic CZ-TACG1 VRF System",
+                specs: "24,000 BTU/h, A+ Energy Class, Multi Zone",
+                brand: "panasonic",
+                capacity: 24000,
+                energyClass: "a+",
+                features: ["wifi"],
+                type: "vrf",
+                retailPrice: 2899,
+                purchasePrice: 2199,
+                salePrice: 2649
+            }
+        ];
+
+        let selectedProducts = [];
+        let currentBrand = 'daikin';
+        let currentCurrency = 'usd';
+        let exchangeRates = {
+            usd: 1,
+            rub: 75.50,
+            eur: 0.85
+        };
+
+        function initBrandTabs() {
+            const brandTabs = document.querySelectorAll('.brand-tab');
+            
+            brandTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    brandTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    currentBrand = this.getAttribute('data-brand');
+                    filterProducts();
+                });
+            });
+        }
+
+        function initFilters() {
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const inputs = document.querySelectorAll('.filter-input');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    filterProducts();
+                });
+            });
+
+            inputs.forEach(input => {
+                input.addEventListener('input', filterProducts);
+            });
+        }
+
+        function filterProducts() {
+            const checkedFilters = Array.from(document.querySelectorAll('.filter-checkbox.checked'))
+                .map(cb => cb.getAttribute('data-filter'));
+            
+            let filteredProducts = sampleProducts.filter(product => {
+                // Filter by brand
+                if (product.brand !== currentBrand) return false;
+                
+                // Filter by checked options
+                if (checkedFilters.length > 0) {
+                    const hasMatchingType = checkedFilters.includes(product.type);
+                    const hasMatchingEnergyClass = checkedFilters.includes(product.energyClass);
+                    const hasMatchingFeatures = product.features.some(feature => checkedFilters.includes(feature));
+                    
+                    if (!hasMatchingType && !hasMatchingEnergyClass && !hasMatchingFeatures) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+
+            renderProducts(filteredProducts);
+            updateResultsCount(filteredProducts.length);
+        }
+
+        function generateSampleProducts() {
+            // Generate more sample products for each brand
+            const brands = ['daikin', 'mitsubishi', 'lg', 'panasonic', 'toshiba', 'fujitsu', 'carrier', 'york', 'trane', 'lennox'];
+            const additionalProducts = [];
+
+            brands.forEach((brand, brandIndex) => {
+                for (let i = 0; i < 3; i++) {
+                    additionalProducts.push({
+                        id: sampleProducts.length + additionalProducts.length + 1,
+                        title: `${brand.charAt(0).toUpperCase() + brand.slice(1)} Model ${i + 1}`,
+                        specs: `${9000 + i * 3000} BTU/h, A++ Energy Class, Premium Features`,
+                        brand: brand,
+                        capacity: 9000 + i * 3000,
+                        energyClass: "a++",
+                        features: ["inverter", "wifi"],
+                        type: "split",
+                        retailPrice: 1000 + brandIndex * 100 + i * 200,
+                        purchasePrice: 700 + brandIndex * 70 + i * 140,
+                        salePrice: 900 + brandIndex * 90 + i * 180
+                    });
+                }
+            });
+
+            sampleProducts.push(...additionalProducts);
+            filterProducts();
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+
+            grid.innerHTML = products.map(product => {
+                const energyClassMap = {
+                    'a+++': 'a-plus-plus-plus',
+                    'a++': 'a-plus-plus', 
+                    'a+': 'a-plus',
+                    'a': 'a'
+                };
+                
+                return `
+                <div class="product-card" data-product-id="${product.id}">
+                    <div class="product-image" title="${currentLang === 'en' ? 'Hover to enlarge' : 'Наведите для увеличения'}">🌀</div>
+                    <div class="product-info">
+                        <div class="product-details">
+                            <h4 class="product-title">${product.title}</h4>
+                            <p class="product-specs">${product.specs}</p>
+                        </div>
+                        
+                        <div class="product-capacity">
+                            <div class="capacity-value">${(product.capacity / 1000).toFixed(1)}k</div>
+                            <div class="capacity-label">${currentLang === 'en' ? 'BTU/h' : 'БТЕ/ч'}</div>
+                        </div>
+                        
+                        <div class="product-energy">
+                            <div class="energy-class ${energyClassMap[product.energyClass]}">${product.energyClass.toUpperCase()}</div>
+                        </div>
+                        
+                        <div class="product-prices">
+                            <div class="price-item">
+                                <span class="price-label">${currentLang === 'en' ? 'Retail:' : 'Розница:'}</span>
+                                <span class="price-value price-retail">${formatPrice(product.retailPrice)}</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">${currentLang === 'en' ? 'Purchase:' : 'Закупка:'}</span>
+                                <span class="price-value price-purchase">${formatPrice(applyDiscounts(product.purchasePrice))}</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">${currentLang === 'en' ? 'Sale:' : 'Продажа:'}</span>
+                                <span class="price-value price-sale">${formatPrice(applyDiscounts(product.salePrice, true))}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="action-btn btn-select" onclick="toggleProductSelection(${product.id})" title="${currentLang === 'en' ? 'Select product' : 'Выбрать продукт'}">
+                                <span class="action-icon">В</span>
+                            </button>
+                            <button class="action-btn btn-compare" onclick="toggleCompare(${product.id})" title="${currentLang === 'en' ? 'Add to comparison' : 'Добавить к сравнению'}">
+                                <span class="action-icon">С</span>
+                            </button>
+                            <button class="action-btn btn-details" onclick="showProductDetails(${product.id})" title="${currentLang === 'en' ? 'Detailed description' : 'Подробное описание'}">
+                                <span class="action-icon">П</span>
+                            </button>
+                            <button class="action-btn btn-favorite" onclick="toggleFavorite(${product.id})" title="${currentLang === 'en' ? 'Add to favorites' : 'В избранное'}">
+                                <span class="action-icon">И</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        let favoriteProducts = [];
+        let compareProducts = [];
+
+        function toggleProductSelection(productId) {
+            const product = sampleProducts.find(p => p.id === productId);
+            const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            const selectButton = productCard.querySelector('.btn-select');
+            
+            const existingIndex = selectedProducts.findIndex(p => p.id === productId);
+            
+            if (existingIndex > -1) {
+                // Remove from selection
+                selectedProducts.splice(existingIndex, 1);
+                selectButton.classList.remove('selected');
+            } else {
+                // Add to selection
+                selectedProducts.push(product);
+                selectButton.classList.add('selected');
+            }
+            
+            updateSelectedPanel();
+        }
+
+        function toggleFavorite(productId) {
+            const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            const favoriteButton = productCard.querySelector('.btn-favorite');
+            
+            const existingIndex = favoriteProducts.findIndex(p => p === productId);
+            
+            if (existingIndex > -1) {
+                // Remove from favorites
+                favoriteProducts.splice(existingIndex, 1);
+                favoriteButton.classList.remove('favorited');
+            } else {
+                // Add to favorites
+                favoriteProducts.push(productId);
+                favoriteButton.classList.add('favorited');
+            }
+            
+            // Show notification
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            const message = existingIndex > -1 ? 
+                (currentLang === 'en' ? 'Removed from favorites' : 'Удалено из избранного') :
+                (currentLang === 'en' ? 'Added to favorites' : 'Добавлено в избранное');
+            showAIResponse(message);
+        }
+
+        function toggleCompare(productId) {
+            const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            const compareButton = productCard.querySelector('.btn-compare');
+            
+            const existingIndex = compareProducts.findIndex(p => p === productId);
+            
+            if (existingIndex > -1) {
+                // Remove from comparison
+                compareProducts.splice(existingIndex, 1);
+                compareButton.classList.remove('comparing');
+            } else {
+                // Add to comparison (max 4 products)
+                if (compareProducts.length >= 4) {
+                    const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                    const message = currentLang === 'en' ? 
+                        'Maximum 4 products for comparison' : 
+                        'Максимум 4 товара для сравнения';
+                    showAIResponse(message);
+                    return;
+                }
+                compareProducts.push(productId);
+                compareButton.classList.add('comparing');
+            }
+            
+            // Show notification
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            const message = existingIndex > -1 ? 
+                (currentLang === 'en' ? 'Removed from comparison' : 'Удалено из сравнения') :
+                (currentLang === 'en' ? `Added to comparison (${compareProducts.length}/4)` : `Добавлено в сравнение (${compareProducts.length}/4)`);
+            showAIResponse(message);
+        }
+
+        function showProductDetails(productId) {
+            const product = sampleProducts.find(p => p.id === productId);
+            if (!product) return;
+            
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            
+            // Create modal with product details
+            const modal = document.createElement('div');
+            modal.className = 'product-modal';
+            modal.innerHTML = `
+                <div class="modal-overlay" onclick="closeProductModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${product.title}</h3>
+                        <button class="modal-close" onclick="closeProductModal()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="product-image-large">🌀</div>
+                        <div class="product-details-full">
+                            <p><strong>${currentLang === 'en' ? 'Specifications:' : 'Характеристики:'}</strong> ${product.specs}</p>
+                            <p><strong>${currentLang === 'en' ? 'Brand:' : 'Бренд:'}</strong> ${product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}</p>
+                            <p><strong>${currentLang === 'en' ? 'Capacity:' : 'Мощность:'}</strong> ${(product.capacity / 1000).toFixed(1)}k BTU/h</p>
+                            <p><strong>${currentLang === 'en' ? 'Energy Class:' : 'Энергетический класс:'}</strong> ${product.energyClass.toUpperCase()}</p>
+                            <p><strong>${currentLang === 'en' ? 'Features:' : 'Особенности:'}</strong> ${product.features.join(', ')}</p>
+                            <div class="price-details">
+                                <p><strong>${currentLang === 'en' ? 'Retail Price:' : 'Розничная цена:'}</strong> ${formatPrice(product.retailPrice)}</p>
+                                <p><strong>${currentLang === 'en' ? 'Purchase Price:' : 'Цена закупки:'}</strong> ${formatPrice(applyDiscounts(product.purchasePrice))}</p>
+                                <p><strong>${currentLang === 'en' ? 'Sale Price:' : 'Цена продажи:'}</strong> ${formatPrice(applyDiscounts(product.salePrice, true))}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function closeProductModal() {
+            const modal = document.querySelector('.product-modal');
+            if (modal) {
+                document.body.removeChild(modal);
+            }
+        }
+
+        function updateSelectedPanel() {
+            const panel = document.getElementById('selectedPanel');
+            const countElement = document.getElementById('selectedCount');
+            const totalElement = document.getElementById('selectedTotal');
+            
+            if (selectedProducts.length > 0) {
+                const total = selectedProducts.reduce((sum, product) => sum + applyDiscounts(product.salePrice, true), 0);
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                
+                countElement.textContent = currentLang === 'en' ? 
+                    `${selectedProducts.length} items selected` : 
+                    `Выбрано ${selectedProducts.length} товаров`;
+                totalElement.textContent = formatPrice(total);
+                panel.classList.add('active');
+            } else {
+                panel.classList.remove('active');
+            }
+        }
+
+        function updateResultsCount(count) {
+            const countElement = document.querySelector('.results-count');
+            if (countElement) {
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                countElement.textContent = currentLang === 'en' ? 
+                    `Found ${count} products` : 
+                    `Найдено ${count} товаров`;
+            }
+        }
+
+        function initProductCards() {
+            // Generate Quote button functionality
+            const generateQuoteBtn = document.getElementById('generateQuote');
+            if (generateQuoteBtn) {
+                generateQuoteBtn.addEventListener('click', function() {
+                    if (selectedProducts.length > 0) {
+                        generateQuote();
+                    }
+                });
+            }
+        }
+
+        function generateQuote() {
+            if (selectedProducts.length === 0) {
+                const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+                const message = currentLang === 'en' ? 
+                    'Please select products first' : 
+                    'Сначала выберите продукты';
+                showAIResponse(message);
+                return;
+            }
+
+            // Prepare products with quantities (default to 1)
+            const productsForQuote = selectedProducts.map(product => ({
+                ...product,
+                quantity: product.quantity || 1
+            }));
+
+            // Store selected products in localStorage for the quote page
+            localStorage.setItem('selectedProducts', JSON.stringify(productsForQuote));
+            
+            // Store current currency and exchange rates
+            localStorage.setItem('quoteCurrency', currentCurrency);
+            localStorage.setItem('quoteExchangeRates', JSON.stringify(exchangeRates));
+            
+            // Navigate to quote page
+            window.location.href = 'quote.html';
+        }
 
         // Language switching functionality
         function initLanguageToggle() {
@@ -1090,6 +3512,15 @@
                     const placeholder = inputElement.getAttribute(`data-${lang}-placeholder`);
                     if (placeholder) {
                         inputElement.placeholder = placeholder;
+                    }
+                }
+                
+                // Update AI search placeholder
+                const aiSearchInput = document.getElementById('aiSearchInput');
+                if (aiSearchInput) {
+                    const aiPlaceholder = aiSearchInput.getAttribute(`data-${lang}-placeholder`);
+                    if (aiPlaceholder) {
+                        aiSearchInput.placeholder = aiPlaceholder;
                     }
                 }
                 
