@@ -706,25 +706,325 @@
             font-weight: 700;
         }
 
+        /* Catalog Categories Row */
+        .catalog-categories-row {
+            display: flex;
+            gap: 1rem;
+            background: var(--primary-white);
+            border-bottom: 1px solid var(--light-gray);
+            padding: 0.75rem 1rem;
+        }
+
+        .category-dropdown {
+            position: relative;
+            flex: 1;
+        }
+
+        .category-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--warm-gray);
+            border: 2px solid var(--light-gray);
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .category-btn:hover {
+            border-color: var(--signature-blue);
+            background: rgba(20, 100, 244, 0.05);
+            color: var(--signature-blue);
+        }
+
+        .category-btn.active {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            box-shadow: 0 2px 8px rgba(20, 100, 244, 0.3);
+        }
+
+        .category-btn.active .dropdown-arrow {
+            color: var(--primary-white);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            margin-left: 0.5rem;
+        }
+
+        .category-btn.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .category-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--primary-white);
+            border: 1px solid var(--light-gray);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-height: 250px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .category-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .subcategory-option {
+            width: 100%;
+            display: block;
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .subcategory-option:last-child {
+            border-bottom: none;
+        }
+
+        .subcategory-option:hover {
+            background: rgba(20, 100, 244, 0.1);
+            color: var(--signature-blue);
+        }
+
+        .subcategory-option.active {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .exclude-option {
+            background: #e0e0e0 !important;
+            color: #757575 !important;
+            font-weight: 600;
+            border-bottom: 2px solid #bdbdbd !important;
+        }
+
+        .exclude-option:hover {
+            background: #d6d6d6 !important;
+            color: #616161 !important;
+        }
+
+        .category-btn.excluded {
+            background: #f5f5f5 !important;
+            color: #9e9e9e !important;
+            border-color: #e0e0e0 !important;
+            opacity: 0.6;
+        }
+
+        .category-btn.excluded .dropdown-arrow {
+            color: #9e9e9e !important;
+        }
+
+        .category-btn.excluded:hover {
+            background: #eeeeee !important;
+            color: #757575 !important;
+            border-color: #d6d6d6 !important;
+        }
+
+        /* Updated Filter Styles - Daichi Style */
+        .filter-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--signature-blue);
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        .filter-item:hover {
+            background-color: var(--warm-gray);
+        }
+
+        .filter-label {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--deep-graphite);
+            user-select: none;
+            flex: 1;
+        }
+
+        /* Price Range Styles */
+        .price-range, .area-range, .capacity-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-input, .area-input, .capacity-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .price-input:focus, .area-input:focus, .capacity-input:focus {
+            border-color: var(--signature-blue);
+            outline: none;
+        }
+
+        .price-separator, .area-separator, .capacity-separator {
+            color: var(--deep-graphite);
+            font-weight: 500;
+        }
+
+        .area-unit, .capacity-unit {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Price Range Slider */
+        .price-range-slider {
+            position: relative;
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            margin-top: 0.5rem;
+        }
+
+        .range-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: var(--light-gray);
+            border-radius: 3px;
+        }
+
+        .range-progress {
+            position: absolute;
+            top: 0;
+            left: 20%;
+            height: 100%;
+            width: 60%;
+            background: var(--signature-blue);
+            border-radius: 3px;
+        }
+
+        /* Clear Filters Button */
+        .filter-actions {
+            padding: 1rem 0;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 1rem;
+        }
+
+        .clear-filters-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--warm-gray);
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            color: var(--deep-graphite);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .clear-filters-btn:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+        }
+
+        /* Responsive Category Row */
+        @media (max-width: 768px) {
+            .catalog-categories-row {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .category-menu {
+                max-height: 200px;
+            }
+
+            .subcategory-option {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+            .price-input, .area-input, .capacity-input {
+                width: 70px;
+                padding: 0.4rem;
+            }
+        }
+
         /* Settings Panel */
         .settings-panel {
             background: var(--primary-white);
             border-bottom: 1px solid var(--light-gray);
-            padding: 1.5rem 2rem;
+            padding: 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .settings-panel.brand-hover {
+            background: rgba(20, 100, 244, 0.05);
+            border-left: 3px solid var(--signature-blue);
         }
 
         .settings-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             gap: 3rem;
+            width: 100%;
+            padding: 0.75rem 2rem;
         }
 
         .discount-settings,
         .currency-settings {
             display: flex;
             gap: 2rem;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .setting-group {
@@ -837,11 +1137,19 @@
 
         @media (max-width: 768px) {
             .settings-panel {
+                min-height: auto;
+                padding: 0;
+            }
+
+            .settings-row {
                 padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .discount-settings,
             .currency-settings {
+                width: 100%;
                 flex-direction: column;
                 gap: 1rem;
                 align-items: flex-start;
@@ -2046,6 +2354,52 @@
                         </div>
                     </div>
 
+                <!-- Catalog Categories Row -->
+                <div class="catalog-categories-row">
+                    <!-- Air Conditioning Dropdown -->
+                    <div class="category-dropdown">
+                        <button class="category-btn active" data-category="air-conditioning">
+                            <span class="category-label" data-en="Air Conditioning" data-ru="Кондиционирование">Air Conditioning</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="category-menu">
+                            <button class="subcategory-option exclude-option" data-subcategory="exclude" data-en="Exclude" data-ru="Исключить">Exclude</button>
+                            <button class="subcategory-option active" data-subcategory="domestic" data-en="Domestic" data-ru="Бытовые">Domestic</button>
+                            <button class="subcategory-option" data-subcategory="multi-split" data-en="Multi-Split" data-ru="Мульти-сплит">Multi-Split</button>
+                            <button class="subcategory-option" data-subcategory="semi-industrial" data-en="Semi-Industrial" data-ru="Полупромышленные">Semi-Industrial</button>
+                            <button class="subcategory-option" data-subcategory="industrial" data-en="Industrial" data-ru="Промышленные">Industrial</button>
+                        </div>
+                    </div>
+
+                    <!-- Ventilation Dropdown -->
+                    <div class="category-dropdown">
+                        <button class="category-btn" data-category="ventilation">
+                            <span class="category-label" data-en="Ventilation" data-ru="Вентиляция">Ventilation</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="category-menu">
+                            <button class="subcategory-option exclude-option" data-subcategory="exclude" data-en="Exclude" data-ru="Исключить">Exclude</button>
+                            <button class="subcategory-option active" data-subcategory="supply" data-en="Supply Systems" data-ru="Приточные системы">Supply Systems</button>
+                            <button class="subcategory-option" data-subcategory="exhaust" data-en="Exhaust Systems" data-ru="Вытяжные системы">Exhaust Systems</button>
+                            <button class="subcategory-option" data-subcategory="recuperation" data-en="Heat Recovery" data-ru="Рекуперация">Heat Recovery</button>
+                        </div>
+                    </div>
+
+                    <!-- Heating Dropdown -->
+                    <div class="category-dropdown">
+                        <button class="category-btn" data-category="heating">
+                            <span class="category-label" data-en="Heating" data-ru="Отопление">Heating</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="category-menu">
+                            <button class="subcategory-option exclude-option" data-subcategory="exclude" data-en="Exclude" data-ru="Исключить">Exclude</button>
+                            <button class="subcategory-option active" data-subcategory="heat-pumps" data-en="Heat Pumps" data-ru="Тепловые насосы">Heat Pumps</button>
+                            <button class="subcategory-option" data-subcategory="boilers" data-en="Boilers" data-ru="Котлы">Boilers</button>
+                            <button class="subcategory-option" data-subcategory="radiators" data-en="Radiators" data-ru="Радиаторы">Radiators</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Brand Tabs -->
                 <div class="brand-tabs">
                     <button class="brand-tab active" data-brand="daikin">Daikin</button>
@@ -2106,82 +2460,138 @@
                 <div class="search-layout">
                     <!-- Filters Sidebar -->
                     <div class="filters-sidebar">
+                        <!-- Price Range Filter -->
                         <div class="filter-section">
-                            <h3 class="filter-title" data-en="Type" data-ru="Тип">Type</h3>
+                            <h3 class="filter-title" data-en="Price Range" data-ru="Диапазон цен">Price Range</h3>
                             <div class="filter-group">
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="split"></div>
-                                    <label class="filter-label" data-en="Split Systems" data-ru="Сплит-системы">Split Systems</label>
+                                <div class="price-range">
+                                    <input type="number" class="price-input" id="priceFrom" placeholder="0" data-en-placeholder="From" data-ru-placeholder="От" />
+                                    <span class="price-separator">—</span>
+                                    <input type="number" class="price-input" id="priceTo" placeholder="50000" data-en-placeholder="To" data-ru-placeholder="До" />
                                 </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="multi"></div>
-                                    <label class="filter-label" data-en="Multi Split" data-ru="Мульти сплит">Multi Split</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="vrf"></div>
-                                    <label class="filter-label" data-en="VRF Systems" data-ru="VRF системы">VRF Systems</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="central"></div>
-                                    <label class="filter-label" data-en="Central AC" data-ru="Центральные кондиционеры">Central AC</label>
+                                <div class="price-range-slider">
+                                    <div class="range-track"></div>
+                                    <div class="range-progress"></div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Technology Filter -->
                         <div class="filter-section">
-                            <h3 class="filter-title" data-en="Capacity" data-ru="Мощность">Capacity</h3>
+                            <h3 class="filter-title" data-en="Technology" data-ru="Технология">Technology</h3>
                             <div class="filter-group">
-                                <div class="filter-range">
-                                    <input type="number" class="filter-input" placeholder="От" data-en-placeholder="From" data-ru-placeholder="От" />
-                                    <span>-</span>
-                                    <input type="number" class="filter-input" placeholder="До" data-en-placeholder="To" data-ru-placeholder="До" />
-                                    <span data-en="BTU" data-ru="БТЕ">BTU</span>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="full-dc-inverter" data-filter="full-dc-inverter">
+                                    <label class="filter-label" for="full-dc-inverter" data-en="Full DC Inverter" data-ru="Full DC Инвертор">Full DC Inverter</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="inverter" data-filter="inverter">
+                                    <label class="filter-label" for="inverter" data-en="Inverter" data-ru="Инвертор">Inverter</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="on-off" data-filter="on-off">
+                                    <label class="filter-label" for="on-off" data-en="On/Off" data-ru="Вкл/Выкл">On/Off</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Heat Pump Filter -->
                         <div class="filter-section">
-                            <h3 class="filter-title" data-en="Energy Class" data-ru="Класс энергоэффективности">Energy Class</h3>
+                            <h3 class="filter-title" data-en="Heat Pump" data-ru="Тепловой насос">Heat Pump</h3>
                             <div class="filter-group">
                                 <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="a+++"></div>
-                                    <label class="filter-label">A+++</label>
+                                    <input type="checkbox" class="filter-checkbox" id="heat-pump-yes" data-filter="heat-pump">
+                                    <label class="filter-label" for="heat-pump-yes" data-en="Yes" data-ru="Да">Yes</label>
                                 </div>
                                 <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="a++"></div>
-                                    <label class="filter-label">A++</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="a+"></div>
-                                    <label class="filter-label">A+</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="a"></div>
-                                    <label class="filter-label">A</label>
+                                    <input type="checkbox" class="filter-checkbox" id="heat-pump-no" data-filter="no-heat-pump">
+                                    <label class="filter-label" for="heat-pump-no" data-en="No" data-ru="Нет">No</label>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Room Area Filter -->
                         <div class="filter-section">
-                            <h3 class="filter-title" data-en="Features" data-ru="Особенности">Features</h3>
+                            <h3 class="filter-title" data-en="Room Area" data-ru="Площадь помещения">Room Area</h3>
                             <div class="filter-group">
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="inverter"></div>
-                                    <label class="filter-label" data-en="Inverter" data-ru="Инвертор">Inverter</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="wifi"></div>
-                                    <label class="filter-label" data-en="Wi-Fi Control" data-ru="Wi-Fi управление">Wi-Fi Control</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="heating"></div>
-                                    <label class="filter-label" data-en="Heating" data-ru="Обогрев">Heating</label>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-checkbox" data-filter="quiet"></div>
-                                    <label class="filter-label" data-en="Quiet Mode" data-ru="Тихий режим">Quiet Mode</label>
+                                <div class="area-range">
+                                    <input type="number" class="area-input" id="areaFrom" placeholder="10" data-en-placeholder="From m²" data-ru-placeholder="От м²" />
+                                    <span class="area-separator">—</span>
+                                    <input type="number" class="area-input" id="areaTo" placeholder="200" data-en-placeholder="To m²" data-ru-placeholder="До м²" />
+                                    <span class="area-unit" data-en="m²" data-ru="м²">m²</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Wi-Fi Management Filter -->
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Wi-Fi Management" data-ru="Wi-Fi управление">Wi-Fi Management</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="wifi-yes" data-filter="wifi">
+                                    <label class="filter-label" for="wifi-yes" data-en="Yes" data-ru="Да">Yes</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="wifi-no" data-filter="no-wifi">
+                                    <label class="filter-label" for="wifi-no" data-en="No" data-ru="Нет">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Color Filter -->
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Color" data-ru="Цвет">Color</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="color-white" data-filter="white">
+                                    <label class="filter-label" for="color-white" data-en="White" data-ru="Белый">White</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="color-black" data-filter="black">
+                                    <label class="filter-label" for="color-black" data-en="Black" data-ru="Черный">Black</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="color-silver" data-filter="silver">
+                                    <label class="filter-label" for="color-silver" data-en="Silver" data-ru="Серебряный">Silver</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Refrigerant Type Filter -->
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Refrigerant Type" data-ru="Тип хладагента">Refrigerant Type</h3>
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="r32" data-filter="r32">
+                                    <label class="filter-label" for="r32">R-32</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="r410a" data-filter="r410a">
+                                    <label class="filter-label" for="r410a">R-410A</label>
+                                </div>
+                                <div class="filter-item">
+                                    <input type="checkbox" class="filter-checkbox" id="r134a" data-filter="r134a">
+                                    <label class="filter-label" for="r134a">R-134A</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cooling Capacity Filter -->
+                        <div class="filter-section">
+                            <h3 class="filter-title" data-en="Cooling Capacity" data-ru="Мощность охлаждения">Cooling Capacity</h3>
+                            <div class="filter-group">
+                                <div class="capacity-range">
+                                    <input type="number" class="capacity-input" id="capacityFrom" placeholder="2.0" data-en-placeholder="From kW" data-ru-placeholder="От кВт" />
+                                    <span class="capacity-separator">—</span>
+                                    <input type="number" class="capacity-input" id="capacityTo" placeholder="15.0" data-en-placeholder="To kW" data-ru-placeholder="До кВт" />
+                                    <span class="capacity-unit" data-en="kW" data-ru="кВт">kW</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters Button -->
+                        <div class="filter-actions">
+                            <button class="clear-filters-btn" onclick="clearAllFilters()" data-en="Clear All Filters" data-ru="Очистить все фильтры">Clear All Filters</button>
                         </div>
                     </div>
 
@@ -2860,6 +3270,9 @@
             initAnimations();
             initLanguageToggle();
             initEquipmentSearch();
+            initCategoryTabs();
+            initRangeSliders();
+            initCheckboxFilters();
         });
 
         // Equipment Search System
@@ -3305,6 +3718,7 @@
 
         function initBrandTabs() {
             const brandTabs = document.querySelectorAll('.brand-tab');
+            const settingsPanel = document.querySelector('.settings-panel');
             
             brandTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
@@ -3315,6 +3729,19 @@
                     
                     currentBrand = this.getAttribute('data-brand');
                     filterProducts();
+                });
+
+                // Add hover effect to highlight settings panel
+                tab.addEventListener('mouseenter', function() {
+                    if (settingsPanel) {
+                        settingsPanel.classList.add('brand-hover');
+                    }
+                });
+
+                tab.addEventListener('mouseleave', function() {
+                    if (settingsPanel) {
+                        settingsPanel.classList.remove('brand-hover');
+                    }
                 });
             });
         }
@@ -3887,6 +4314,275 @@
                 card.classList.add('fade-in');
                 card.style.transitionDelay = `${index * 0.1}s`;
                 observer.observe(card);
+            });
+        }
+
+        // Category row functionality
+        function initCategoryTabs() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const categoryMenus = document.querySelectorAll('.category-menu');
+            const subcategoryOptions = document.querySelectorAll('.subcategory-option');
+
+            // Handle category button clicks
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const menu = this.parentElement.querySelector('.category-menu');
+                    const isOpen = menu.classList.contains('show');
+                    
+                    // Close all other menus
+                    categoryMenus.forEach(m => {
+                        m.classList.remove('show');
+                    });
+                    categoryBtns.forEach(b => {
+                        b.classList.remove('open');
+                    });
+                    
+                    // Toggle current menu
+                    if (!isOpen) {
+                        menu.classList.add('show');
+                        this.classList.add('open');
+                    }
+                });
+            });
+
+            // Handle category activation (making category active/inactive)
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('dblclick', function() {
+                    const isActive = this.classList.contains('active');
+                    
+                    if (isActive) {
+                        // Deactivate category
+                        this.classList.remove('active');
+                        const category = this.getAttribute('data-category');
+                        deactivateCategory(category);
+                    } else {
+                        // Activate category
+                        this.classList.add('active');
+                        const category = this.getAttribute('data-category');
+                        activateCategory(category);
+                    }
+                });
+            });
+
+            // Handle subcategory selection
+            subcategoryOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const parentDropdown = this.closest('.category-dropdown');
+                    const categoryBtn = parentDropdown.querySelector('.category-btn');
+                    const subcategory = this.getAttribute('data-subcategory');
+                    const category = categoryBtn.getAttribute('data-category');
+                    
+                    // Remove active from all subcategories in this dropdown
+                    const siblingOptions = parentDropdown.querySelectorAll('.subcategory-option');
+                    siblingOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active to clicked option
+                    this.classList.add('active');
+
+                    // Handle exclude option
+                    if (subcategory === 'exclude') {
+                        // Mark category as excluded
+                        categoryBtn.classList.remove('active');
+                        categoryBtn.classList.add('excluded');
+                        
+                        // Hide this category section completely
+                        excludeCategory(category);
+                    } else {
+                        // Normal subcategory selection
+                        categoryBtn.classList.remove('excluded');
+                        categoryBtn.classList.add('active');
+                        
+                        // Filter products
+                        filterProductsByCategory(category);
+                        filterProductsBySubcategory(subcategory);
+                    }
+
+                    // Close menu
+                    const menu = parentDropdown.querySelector('.category-menu');
+                    menu.classList.remove('show');
+                    categoryBtn.classList.remove('open');
+                });
+            });
+
+            // Close menus when clicking outside
+            document.addEventListener('click', function() {
+                categoryMenus.forEach(menu => {
+                    menu.classList.remove('show');
+                });
+                categoryBtns.forEach(btn => {
+                    btn.classList.remove('open');
+                });
+            });
+
+            // Prevent menu closing when clicking inside
+            categoryMenus.forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        }
+
+        // Activate category function
+        function activateCategory(category) {
+            filterProductsByCategory(category);
+        }
+
+        // Deactivate category function
+        function deactivateCategory(category) {
+            // Show all products when category is deactivated
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+            updateResultsCount(products.length);
+        }
+
+        // Exclude category function
+        function excludeCategory(category) {
+            // Hide all products from this category
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                const productCategory = product.getAttribute('data-category');
+                if (productCategory === category) {
+                    product.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            const visibleProducts = document.querySelectorAll('.product-card[style*="block"], .product-card:not([style*="none"])');
+            updateResultsCount(visibleProducts.length);
+        }
+
+        // Filter products by category
+        function filterProductsByCategory(category) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                const productCategory = product.getAttribute('data-category');
+                if (!productCategory || productCategory === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            updateResultsCount(document.querySelectorAll('.product-card[style*="block"]').length);
+        }
+
+        // Filter products by subcategory
+        function filterProductsBySubcategory(subcategory) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                const productSubcategory = product.getAttribute('data-subcategory');
+                if (!productSubcategory || productSubcategory === subcategory) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            updateResultsCount(document.querySelectorAll('.product-card[style*="block"]').length);
+        }
+
+        // Clear all filters functionality
+        function clearAllFilters() {
+            // Clear checkboxes
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.classList.remove('checked');
+                const input = checkbox.querySelector('input[type="checkbox"]');
+                if (input) input.checked = false;
+            });
+
+            // Reset range inputs
+            const rangeInputs = document.querySelectorAll('input[type="range"]');
+            rangeInputs.forEach(input => {
+                input.value = input.min || 0;
+                const display = input.parentElement.querySelector('.range-display');
+                if (display) {
+                    display.textContent = input.value;
+                }
+            });
+
+            // Reset text inputs
+            const textInputs = document.querySelectorAll('.filter-input input[type="text"], .filter-input input[type="number"]');
+            textInputs.forEach(input => {
+                input.value = '';
+            });
+
+            // Reset selects
+            const selects = document.querySelectorAll('.filter-input select');
+            selects.forEach(select => {
+                select.selectedIndex = 0;
+            });
+
+            // Reset excluded categories
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.classList.remove('excluded');
+            });
+
+            // Reset subcategory options to first non-exclude option
+            const subcategoryOptions = document.querySelectorAll('.subcategory-option');
+            subcategoryOptions.forEach(option => {
+                option.classList.remove('active');
+            });
+
+            // Set first non-exclude subcategory as active for each category
+            const categoryDropdowns = document.querySelectorAll('.category-dropdown');
+            categoryDropdowns.forEach(dropdown => {
+                const firstNonExcludeOption = dropdown.querySelector('.subcategory-option:not(.exclude-option)');
+                if (firstNonExcludeOption) {
+                    firstNonExcludeOption.classList.add('active');
+                }
+            });
+
+            // Show all products
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+
+            updateResultsCount(products.length);
+        }
+
+        // Initialize new range sliders
+        function initRangeSliders() {
+            const rangeInputs = document.querySelectorAll('input[type="range"]');
+            rangeInputs.forEach(input => {
+                const display = input.parentElement.querySelector('.range-display');
+                if (display) {
+                    // Update display on input
+                    input.addEventListener('input', function() {
+                        const value = this.value;
+                        if (this.id === 'priceRange') {
+                            display.textContent = formatPrice(parseInt(value));
+                        } else if (this.id === 'areaRange') {
+                            display.textContent = value + ' м²';
+                        } else if (this.id === 'capacityRange') {
+                            display.textContent = value + ' BTU';
+                        } else {
+                            display.textContent = value;
+                        }
+                    });
+
+                    // Trigger initial display update
+                    input.dispatchEvent(new Event('input'));
+                }
+            });
+        }
+
+        // Initialize new checkbox filters
+        function initCheckboxFilters() {
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    const input = this.querySelector('input[type="checkbox"]');
+                    if (input) {
+                        input.checked = this.classList.contains('checked');
+                    }
+                    filterProducts();
+                });
             });
         }
     </script>

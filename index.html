@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIR Dealer - Intelligent Platform for HVAC Companies</title>
+    <title>AIR Dealer - Intelligent Platform for HVAC</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         
@@ -228,8 +228,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 80vh;
-            padding: 100px 0 60px;
+            min-height: 50vh;
+            padding: 120px 0 40px;
         }
 
         .geometric-bg {
@@ -402,49 +402,45 @@
 
         /* AI Agents Section */
         .agents-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .agent-card {
-            background: transparent;
-            padding: 0.8rem 0;
+            background: var(--primary-white);
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            text-align: center;
+            gap: 1rem;
             transition: all 0.3s ease;
             position: relative;
         }
 
-        .agent-card:nth-child(even) {
-            margin-left: 4rem;
-        }
-
-        .agent-card:nth-child(odd) {
-            margin-right: 4rem;
-        }
-
         .agent-card:hover {
-            background: rgba(244, 244, 244, 0.3);
-            padding-left: 1rem;
-            padding-right: 1rem;
-            border-radius: 8px;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--signature-blue);
         }
 
         .agent-icon {
-            font-size: 1.5rem;
-            width: 45px;
-            height: 45px;
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--deep-graphite);
+            background: var(--signature-blue);
             color: var(--primary-white);
             border-radius: 50%;
             flex-shrink: 0;
+            margin-bottom: 0.5rem;
         }
 
         .agent-content {
@@ -810,15 +806,12 @@
             }
             
             .agents-grid {
-                gap: 1rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .agent-card {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
+                padding: 1.5rem;
             }
             
             .agent-content {
@@ -969,12 +962,8 @@
         </div>
         <div class="container">
             <div class="cover-content">
-                <h1 class="cover-title" data-en="INTELLIGENT PLATFORM<br>FOR HVAC COMPANIES" data-ru="ИНТЕЛЛЕКТУАЛЬНАЯ ПЛАТФОРМА<br>КОМПАНИЙ HVAC">INTELLIGENT PLATFORM<br>FOR HVAC COMPANIES</h1>
+                <h1 class="cover-title" data-en="INTELLIGENT PLATFORM<br>FOR HVAC" data-ru="ИНТЕЛЛЕКТУАЛЬНАЯ ПЛАТФОРМА<br>ДЛЯ HVAC">INTELLIGENT PLATFORM<br>FOR HVAC</h1>
                 <p class="cover-subtitle" data-en="FROM REQUEST TO PROPOSAL IN 7 MINUTES" data-ru="ОТ ЗАПРОСА ДО ПРЕДЛОЖЕНИЯ ЗА 7 МИНУТ">FROM REQUEST TO PROPOSAL IN 7 MINUTES</p>
-                <div class="cover-cta">
-                    <button class="btn-primary" data-en="GET STARTED" data-ru="НАЧАТЬ">GET STARTED</button>
-                    <button class="btn-secondary" data-en="WATCH DEMO" data-ru="СМОТРЕТЬ ДЕМО">WATCH DEMO</button>
-                </div>
             </div>
         </div>
     </section>
@@ -1046,8 +1035,8 @@
     <section id="agents" class="section ai-agents">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-en="AI AGENTS" data-ru="ИИ АГЕНТЫ">AI AGENTS</h2>
-                <p class="section-subtitle" data-en="Six specialized AI agents working together" data-ru="Шесть специализированных ИИ агентов работают вместе">Six specialized AI agents working together</p>
+                <h2 class="section-title" data-en="MODULES" data-ru="МОДУЛИ">MODULES</h2>
+                <p class="section-subtitle" data-en="Six specialized modules working together" data-ru="Шесть специализированных модулей работают вместе">Six specialized modules working together</p>
             </div>
             <div class="agents-grid">
                 <div class="agent-card">
@@ -1248,44 +1237,6 @@
         </div>
     </section>
 
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="section roadmap">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-en="ROADMAP" data-ru="ПЛАН РАЗВИТИЯ">ROADMAP</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">1</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title" data-en="PHASE 1" data-ru="ЭТАП 1">PHASE 1</h3>
-                        <p class="timeline-description" data-en="AIR Scout + AIR Match" data-ru="ИИ Поиск + ИИ Анализ">AIR Scout + AIR Match</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">2</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title" data-en="PHASE 2" data-ru="ЭТАП 2">PHASE 2</h3>
-                        <p class="timeline-description" data-en="AIR Negotiator + Dashboard" data-ru="ИИ Продажа + Панель">AIR Negotiator + Dashboard</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">3</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title" data-en="PHASE 3" data-ru="ЭТАП 3">PHASE 3</h3>
-                        <p class="timeline-description" data-en="AIR Designer + AIR Install" data-ru="ИИ Проект + ИИ Монтаж">AIR Designer + AIR Install</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker">4</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title" data-en="PHASE 4" data-ru="ЭТАП 4">PHASE 4</h3>
-                        <p class="timeline-description" data-en="AIR Service + AIR Forecast" data-ru="ИИ Сервис + ИИ Прогноз">AIR Service + AIR Forecast</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Final Section -->
     <section id="contact" class="section final">

@@ -12,7 +12,8 @@
       "Bash(start account.html)",
       "Bash(start quote.html)",
       "Bash(start index.html)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebFetch(domain:daichi.business)"
     ],
     "deny": [],
     "ask": []
