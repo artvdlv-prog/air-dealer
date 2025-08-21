@@ -118,6 +118,42 @@
             color: var(--signature-blue);
         }
 
+        /* Navigation Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--deep-graphite);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .profile-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover svg {
+            transform: scale(1.1);
+        }
+
         /* Language Toggle */
         .language-toggle {
             display: flex;
@@ -811,11 +847,13 @@
                 display: none;
             }
             
-            .language-toggle {
-                position: absolute;
-                right: 1rem;
-                top: 50%;
-                transform: translateY(-50%);
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .profile-icon {
+                width: 36px;
+                height: 36px;
             }
             
             .lang-btn {
@@ -903,15 +941,22 @@
     <nav class="nav">
         <div class="nav-logo">AIR DEALER</div>
         <div class="nav-menu">
-            <a href="#cover" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
-            <a href="#problem" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
-            <a href="#agents" class="nav-item" data-en="AI AGENTS" data-ru="ИИ АГЕНТЫ">AI AGENTS</a>
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="solution.html" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="modules.html" class="nav-item" data-en="MODULES" data-ru="МОДУЛИ">MODULES</a>
             <a href="dashboard.html" class="nav-item" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
-            <a href="#contact" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+            <a href="contact.html" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
         </div>
-        <div class="language-toggle">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="ru">RU</button>
+        <div class="nav-right">
+            <a href="account.html" class="profile-icon" title="Personal Account / Личный кабинет">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </a>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
         </div>
     </nav>
 

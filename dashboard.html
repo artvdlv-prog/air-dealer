@@ -71,6 +71,12 @@
             font-weight: 900;
             color: var(--deep-graphite);
             letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: var(--signature-blue);
         }
 
         .nav-menu {
@@ -93,6 +99,86 @@
 
         .nav-item.active {
             color: var(--signature-blue);
+        }
+
+        /* Navigation Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--deep-graphite);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .profile-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
         }
 
         /* Main Dashboard Layout */
@@ -1021,33 +1107,58 @@
             color: #666;
         }
 
-        .product-energy {
+
+        /* Stock Availability */
+        .product-availability {
             text-align: center;
+            min-width: 80px;
         }
 
-        .energy-class {
+        .availability-scale {
+            display: flex;
+            gap: 2px;
+            justify-content: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .availability-square {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .availability-square.filled {
+            opacity: 1;
+        }
+
+        .availability-square.empty {
+            opacity: 0.2;
+            background: var(--light-gray);
+        }
+
+        .availability-square.red {
+            background: var(--error-red);
+        }
+
+        .availability-square.yellow {
+            background: var(--warning-yellow);
+        }
+
+        .availability-square.green {
             background: var(--success-green);
-            color: var(--primary-white);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.8rem;
         }
 
-        .energy-class.a-plus-plus-plus {
-            background: var(--success-green);
+        .availability-label {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: 500;
         }
 
-        .energy-class.a-plus-plus {
-            background: #7CB342;
-        }
-
-        .energy-class.a-plus {
-            background: #FFA726;
-        }
-
-        .energy-class.a {
-            background: #FF8A65;
+        .availability-text {
+            font-size: 0.65rem;
+            color: #666;
+            margin-top: 0.15rem;
         }
 
         .product-actions {
@@ -1730,6 +1841,15 @@
             .nav-menu {
                 display: none;
             }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .profile-icon {
+                width: 36px;
+                height: 36px;
+            }
 
             .dashboard-container {
                 padding-top: 90px;
@@ -1823,14 +1943,21 @@
         <a href="index.html" class="nav-logo">AIR DEALER</a>
         <div class="nav-menu">
             <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
-            <a href="index.html#problem" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
-            <a href="index.html#agents" class="nav-item" data-en="AI AGENTS" data-ru="ИИ АГЕНТЫ">AI AGENTS</a>
+            <a href="solution.html" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="modules.html" class="nav-item" data-en="MODULES" data-ru="МОДУЛИ">MODULES</a>
             <a href="#" class="nav-item active" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
-            <a href="index.html#contact" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+            <a href="contact.html" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
         </div>
-        <div class="language-toggle">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="ru">RU</button>
+        <div class="nav-right">
+            <a href="account.html" class="profile-icon" title="Personal Account / Личный кабинет">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </a>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
         </div>
     </nav>
 
@@ -2040,7 +2167,7 @@
                             <div class="header-cell"></div>
                             <div class="header-cell" data-en="Product" data-ru="Товар">Product</div>
                             <div class="header-cell text-center header-capacity" data-en="Capacity" data-ru="Мощность">Capacity</div>
-                            <div class="header-cell text-center header-energy" data-en="Energy" data-ru="Энерг. класс">Energy</div>
+                            <div class="header-cell text-center header-energy" data-en="Stock" data-ru="Наличие">Stock</div>
                             <div class="header-cell text-right header-prices" data-en="Prices" data-ru="Цены">Prices</div>
                             <div class="header-cell text-center" data-en="Actions" data-ru="Действия">Actions</div>
                         </div>
@@ -2686,7 +2813,7 @@
             <span class="selected-count" id="selectedCount">0 items selected</span>
             <span class="selected-total" id="selectedTotal">$0</span>
         </div>
-        <button class="btn-quote" id="generateQuote" data-en="Generate Quote" data-ru="Создать КП">Generate Quote</button>
+        <button class="btn-quote" onclick="generateQuote()" data-en="Generate Quote" data-ru="Создать КП">Generate Quote</button>
     </div>
 
     <script>
@@ -3084,7 +3211,8 @@
                 type: "split",
                 retailPrice: 1299,
                 purchasePrice: 899,
-                salePrice: 1199
+                salePrice: 1199,
+                stock: 5
             },
             {
                 id: 2,
@@ -3097,7 +3225,8 @@
                 type: "multi",
                 retailPrice: 1599,
                 purchasePrice: 1199,
-                salePrice: 1459
+                salePrice: 1459,
+                stock: 2
             },
             {
                 id: 3,
@@ -3110,7 +3239,8 @@
                 type: "split",
                 retailPrice: 1199,
                 purchasePrice: 799,
-                salePrice: 1099
+                salePrice: 1099,
+                stock: 4
             },
             {
                 id: 4,
@@ -3123,7 +3253,8 @@
                 type: "vrf",
                 retailPrice: 2899,
                 purchasePrice: 2199,
-                salePrice: 2649
+                salePrice: 2649,
+                stock: 6
             }
         ];
 
@@ -3212,7 +3343,8 @@
                         type: "split",
                         retailPrice: 1000 + brandIndex * 100 + i * 200,
                         purchasePrice: 700 + brandIndex * 70 + i * 140,
-                        salePrice: 900 + brandIndex * 90 + i * 180
+                        salePrice: 900 + brandIndex * 90 + i * 180,
+                        stock: Math.floor(Math.random() * 6) + 1
                     });
                 }
             });
@@ -3228,13 +3360,6 @@
             const currentLang = localStorage.getItem('preferredLanguage') || 'en';
 
             grid.innerHTML = products.map(product => {
-                const energyClassMap = {
-                    'a+++': 'a-plus-plus-plus',
-                    'a++': 'a-plus-plus', 
-                    'a+': 'a-plus',
-                    'a': 'a'
-                };
-                
                 return `
                 <div class="product-card" data-product-id="${product.id}">
                     <div class="product-image" title="${currentLang === 'en' ? 'Hover to enlarge' : 'Наведите для увеличения'}">🌀</div>
@@ -3249,8 +3374,12 @@
                             <div class="capacity-label">${currentLang === 'en' ? 'BTU/h' : 'БТЕ/ч'}</div>
                         </div>
                         
-                        <div class="product-energy">
-                            <div class="energy-class ${energyClassMap[product.energyClass]}">${product.energyClass.toUpperCase()}</div>
+                        <div class="product-availability">
+                            <div class="availability-scale">
+                                ${generateAvailabilityScale(product.stock)}
+                            </div>
+                            <div class="availability-label">${currentLang === 'en' ? 'Stock' : 'Склад'}</div>
+                            <div class="availability-text">${getStockText(product.stock, currentLang)}</div>
                         </div>
                         
                         <div class="product-prices">
@@ -3437,6 +3566,40 @@
                 countElement.textContent = currentLang === 'en' ? 
                     `Found ${count} products` : 
                     `Найдено ${count} товаров`;
+            }
+        }
+
+        // Stock availability functions
+        function generateAvailabilityScale(stock) {
+            let squares = '';
+            for (let i = 1; i <= 6; i++) {
+                let cssClass = 'availability-square';
+                
+                if (i <= stock) {
+                    cssClass += ' filled';
+                    if (stock <= 2) {
+                        cssClass += ' red';
+                    } else if (stock <= 4) {
+                        cssClass += ' yellow';
+                    } else {
+                        cssClass += ' green';
+                    }
+                } else {
+                    cssClass += ' empty';
+                }
+                
+                squares += `<div class="${cssClass}"></div>`;
+            }
+            return squares;
+        }
+
+        function getStockText(stock, lang) {
+            if (stock <= 2) {
+                return lang === 'en' ? 'Low' : 'Мало';
+            } else if (stock <= 4) {
+                return lang === 'en' ? 'Limited' : 'Ограничено';
+            } else {
+                return lang === 'en' ? 'Available' : 'Достаточно';
             }
         }
 

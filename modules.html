@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR Dealer - AI Modules</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Color variables */
+        :root {
+            --primary-white: #FFFFFF;
+            --deep-graphite: #1A1A1A;
+            --signature-blue: #1464F4;
+            --warm-gray: #F4F4F4;
+            --lemon: #F4E146;
+            --turquoise: #46F4E1;
+            --light-gray: #E5E5E5;
+            --orange: #FF6B35;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-graphite);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--deep-graphite);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-item.active {
+            color: var(--signature-blue);
+        }
+
+        /* Navigation Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--deep-graphite);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .profile-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--warm-gray) 0%, var(--primary-white) 100%);
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 400;
+            text-transform: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Modules Section */
+        .modules-section {
+            padding: 6rem 0;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .module-card {
+            background: var(--primary-white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--signature-blue), var(--turquoise));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(20, 100, 244, 0.15);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            display: block;
+            color: var(--signature-blue);
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .module-subtitle {
+            font-size: 1rem;
+            color: var(--signature-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-transform: none;
+        }
+
+        .module-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .module-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .module-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .module-features li::before {
+            content: '✓';
+            color: var(--signature-blue);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .module-action {
+            text-align: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-graphite);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--signature-blue);
+            border: 2px solid var(--signature-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+        }
+
+        /* Integration Section */
+        .integration-section {
+            padding: 6rem 0;
+            background: var(--warm-gray);
+        }
+
+        .integration-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .integration-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .integration-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .integration-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .integration-feature {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .integration-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--signature-blue);
+        }
+
+        .integration-feature-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-graphite);
+        }
+
+        .integration-feature-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .profile-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .module-card {
+                padding: 2rem;
+            }
+
+            .integration-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">AIR DEALER</a>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="solution.html" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="#" class="nav-item active" data-en="MODULES" data-ru="МОДУЛИ">MODULES</a>
+            <a href="dashboard.html" class="nav-item" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
+            <a href="contact.html" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+        </div>
+        <div class="nav-right">
+            <a href="account.html" class="profile-icon" title="Personal Account / Личный кабинет">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </a>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title" data-en="AI MODULES" data-ru="ИИ МОДУЛИ">AI MODULES</h1>
+                <p class="page-subtitle" data-en="Six specialized AI agents working together to transform your HVAC business operations from request to delivery." data-ru="Шесть специализированных ИИ агентов работают вместе, чтобы трансформировать операции вашего HVAC бизнеса от запроса до доставки.">Six specialized AI agents working together to transform your HVAC business operations from request to delivery.</p>
+            </div>
+        </section>
+
+        <!-- Modules Section -->
+        <section class="modules-section">
+            <div class="container">
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-icon">🔍</div>
+                        <h3 class="module-title" data-en="AIR SCOUT" data-ru="ИИ ПОИСК">AIR SCOUT</h3>
+                        <p class="module-subtitle" data-en="Intelligent Product Discovery" data-ru="Интеллектуальный поиск продуктов">Intelligent Product Discovery</p>
+                        <p class="module-description" data-en="Advanced AI-powered search and matching system that instantly finds the perfect HVAC equipment based on technical requirements, budget constraints, and project specifications." data-ru="Передовая система поиска и сопоставления на основе ИИ, которая мгновенно находит идеальное HVAC оборудование на основе технических требований, бюджетных ограничений и спецификаций проекта.">Advanced AI-powered search and matching system that instantly finds the perfect HVAC equipment based on technical requirements, budget constraints, and project specifications.</p>
+                        <ul class="module-features">
+                            <li data-en="Smart catalog search across 50+ brands" data-ru="Умный поиск по каталогам 50+ брендов">Smart catalog search across 50+ brands</li>
+                            <li data-en="Compatibility verification" data-ru="Проверка совместимости">Compatibility verification</li>
+                            <li data-en="Alternative product suggestions" data-ru="Предложения альтернативных продуктов">Alternative product suggestions</li>
+                            <li data-en="Real-time availability checking" data-ru="Проверка наличия в реальном времени">Real-time availability checking</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-primary" data-en="Try Scout" data-ru="Попробовать Scout">Try Scout</a>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">⚙️</div>
+                        <h3 class="module-title" data-en="AIR MATCH" data-ru="ИИ АНАЛИЗ">AIR MATCH</h3>
+                        <p class="module-subtitle" data-en="Optimal Equipment Configuration" data-ru="Оптимальная конфигурация оборудования">Optimal Equipment Configuration</p>
+                        <p class="module-description" data-en="Intelligent system that analyzes building parameters, climate conditions, and energy requirements to recommend the most efficient HVAC configurations." data-ru="Интеллектуальная система, которая анализирует параметры здания, климатические условия и энергетические требования для рекомендации наиболее эффективных HVAC конфигураций.">Intelligent system that analyzes building parameters, climate conditions, and energy requirements to recommend the most efficient HVAC configurations.</p>
+                        <ul class="module-features">
+                            <li data-en="Load calculation automation" data-ru="Автоматизация расчета нагрузок">Load calculation automation</li>
+                            <li data-en="Energy efficiency optimization" data-ru="Оптимизация энергоэффективности">Energy efficiency optimization</li>
+                            <li data-en="System sizing recommendations" data-ru="Рекомендации по размерам системы">System sizing recommendations</li>
+                            <li data-en="Performance prediction models" data-ru="Модели прогнозирования производительности">Performance prediction models</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-secondary" data-en="Explore Match" data-ru="Изучить Match">Explore Match</a>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">💰</div>
+                        <h3 class="module-title" data-en="AIR NEGOTIATOR" data-ru="ИИ ПРОДАЖА">AIR NEGOTIATOR</h3>
+                        <p class="module-subtitle" data-en="Dynamic Pricing Optimization" data-ru="Динамическая оптимизация ценообразования">Dynamic Pricing Optimization</p>
+                        <p class="module-description" data-en="Advanced pricing engine that analyzes market conditions, competitor prices, and margin requirements to optimize deal profitability while maintaining competitiveness." data-ru="Передовой движок ценообразования, который анализирует рыночные условия, цены конкурентов и требования к марже для оптимизации прибыльности сделок при сохранении конкурентоспособности.">Advanced pricing engine that analyzes market conditions, competitor prices, and margin requirements to optimize deal profitability while maintaining competitiveness.</p>
+                        <ul class="module-features">
+                            <li data-en="Real-time market analysis" data-ru="Анализ рынка в реальном времени">Real-time market analysis</li>
+                            <li data-en="Margin optimization algorithms" data-ru="Алгоритмы оптимизации маржи">Margin optimization algorithms</li>
+                            <li data-en="Competitor price tracking" data-ru="Отслеживание цен конкурентов">Competitor price tracking</li>
+                            <li data-en="Volume discount calculations" data-ru="Расчеты объемных скидок">Volume discount calculations</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-primary" data-en="Test Negotiator" data-ru="Тестировать Negotiator">Test Negotiator</a>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">📐</div>
+                        <h3 class="module-title" data-en="AIR DESIGNER" data-ru="ИИ ПРОЕКТ">AIR DESIGNER</h3>
+                        <p class="module-subtitle" data-en="System Layout & Specifications" data-ru="Компоновка системы и спецификации">System Layout & Specifications</p>
+                        <p class="module-description" data-en="AI-powered design assistant that creates detailed system layouts, technical specifications, and installation guides based on project requirements and best practices." data-ru="Помощник по дизайну на основе ИИ, который создает детальные схемы систем, технические спецификации и руководства по установке на основе требований проекта и лучших практик.">AI-powered design assistant that creates detailed system layouts, technical specifications, and installation guides based on project requirements and best practices.</p>
+                        <ul class="module-features">
+                            <li data-en="Automated CAD generation" data-ru="Автоматическая генерация CAD">Automated CAD generation</li>
+                            <li data-en="Code compliance checking" data-ru="Проверка соответствия нормам">Code compliance checking</li>
+                            <li data-en="Installation documentation" data-ru="Документация по установке">Installation documentation</li>
+                            <li data-en="3D visualization tools" data-ru="Инструменты 3D визуализации">3D visualization tools</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-secondary" data-en="Design Now" data-ru="Проектировать сейчас">Design Now</a>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">🔧</div>
+                        <h3 class="module-title" data-en="AIR SERVICE" data-ru="ИИ СЕРВИС">AIR SERVICE</h3>
+                        <p class="module-subtitle" data-en="Maintenance & Support Planning" data-ru="Планирование обслуживания и поддержки">Maintenance & Support Planning</p>
+                        <p class="module-description" data-en="Comprehensive service management system that schedules maintenance, predicts potential issues, and optimizes service delivery for long-term customer satisfaction." data-ru="Комплексная система управления сервисом, которая планирует техническое обслуживание, прогнозирует потенциальные проблемы и оптимизирует предоставление услуг для долгосрочного удовлетворения клиентов.">Comprehensive service management system that schedules maintenance, predicts potential issues, and optimizes service delivery for long-term customer satisfaction.</p>
+                        <ul class="module-features">
+                            <li data-en="Predictive maintenance alerts" data-ru="Предупреждения о профилактическом обслуживании">Predictive maintenance alerts</li>
+                            <li data-en="Service schedule optimization" data-ru="Оптимизация графика обслуживания">Service schedule optimization</li>
+                            <li data-en="Parts inventory management" data-ru="Управление запасами запчастей">Parts inventory management</li>
+                            <li data-en="Customer portal integration" data-ru="Интеграция с порталом клиентов">Customer portal integration</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-primary" data-en="Manage Service" data-ru="Управлять сервисом">Manage Service</a>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-icon">📊</div>
+                        <h3 class="module-title" data-en="AIR FORECAST" data-ru="ИИ ПРОГНОЗ">AIR FORECAST</h3>
+                        <p class="module-subtitle" data-en="Predictive Analytics & Insights" data-ru="Предиктивная аналитика и инсайты">Predictive Analytics & Insights</p>
+                        <p class="module-description" data-en="Advanced analytics platform that provides market trends, demand forecasting, and business intelligence to help make data-driven strategic decisions." data-ru="Передовая аналитическая платформа, которая предоставляет рыночные тренды, прогнозирование спроса и бизнес-аналитику для принятия стратегических решений на основе данных.">Advanced analytics platform that provides market trends, demand forecasting, and business intelligence to help make data-driven strategic decisions.</p>
+                        <ul class="module-features">
+                            <li data-en="Market trend analysis" data-ru="Анализ рыночных трендов">Market trend analysis</li>
+                            <li data-en="Demand forecasting models" data-ru="Модели прогнозирования спроса">Demand forecasting models</li>
+                            <li data-en="Performance dashboards" data-ru="Дашборды производительности">Performance dashboards</li>
+                            <li data-en="Strategic planning tools" data-ru="Инструменты стратегического планирования">Strategic planning tools</li>
+                        </ul>
+                        <div class="module-action">
+                            <a href="dashboard.html" class="btn btn-secondary" data-en="View Analytics" data-ru="Просмотреть аналитику">View Analytics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Section -->
+        <section class="integration-section">
+            <div class="container">
+                <div class="integration-content">
+                    <h2 class="integration-title" data-en="SEAMLESS INTEGRATION" data-ru="БЕСШОВНАЯ ИНТЕГРАЦИЯ">SEAMLESS INTEGRATION</h2>
+                    <p class="integration-description" data-en="All AI modules work together as a unified ecosystem, sharing data and insights to deliver comprehensive HVAC solutions." data-ru="Все ИИ модули работают вместе как единая экосистема, обмениваясь данными и инсайтами для предоставления комплексных HVAC решений.">All AI modules work together as a unified ecosystem, sharing data and insights to deliver comprehensive HVAC solutions.</p>
+                    
+                    <div class="integration-features">
+                        <div class="integration-feature">
+                            <div class="integration-feature-icon">🔄</div>
+                            <h4 class="integration-feature-title" data-en="DATA SYNCHRONIZATION" data-ru="СИНХРОНИЗАЦИЯ ДАННЫХ">DATA SYNCHRONIZATION</h4>
+                            <p class="integration-feature-text" data-en="Real-time data sharing between modules" data-ru="Обмен данными между модулями в реальном времени">Real-time data sharing between modules</p>
+                        </div>
+                        <div class="integration-feature">
+                            <div class="integration-feature-icon">⚡</div>
+                            <h4 class="integration-feature-title" data-en="INSTANT PROCESSING" data-ru="МГНОВЕННАЯ ОБРАБОТКА">INSTANT PROCESSING</h4>
+                            <p class="integration-feature-text" data-en="Lightning-fast quote generation" data-ru="Молниеносная генерация предложений">Lightning-fast quote generation</p>
+                        </div>
+                        <div class="integration-feature">
+                            <div class="integration-feature-icon">🎯</div>
+                            <h4 class="integration-feature-title" data-en="SMART RECOMMENDATIONS" data-ru="УМНЫЕ РЕКОМЕНДАЦИИ">SMART RECOMMENDATIONS</h4>
+                            <p class="integration-feature-text" data-en="AI-driven optimization suggestions" data-ru="Предложения по оптимизации на основе ИИ">AI-driven optimization suggestions</p>
+                        </div>
+                        <div class="integration-feature">
+                            <div class="integration-feature-icon">📈</div>
+                            <h4 class="integration-feature-title" data-en="CONTINUOUS LEARNING" data-ru="НЕПРЕРЫВНОЕ ОБУЧЕНИЕ">CONTINUOUS LEARNING</h4>
+                            <p class="integration-feature-text" data-en="Modules improve with each interaction" data-ru="Модули улучшаются с каждым взаимодействием">Modules improve with each interaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguageToggle();
+        });
+
+        function initLanguageToggle() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsWithTranslations = document.querySelectorAll('[data-en][data-ru]');
+            
+            let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(currentLang);
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    if (newLang !== currentLang) {
+                        switchLanguage(newLang);
+                        currentLang = newLang;
+                        localStorage.setItem('preferredLanguage', newLang);
+                    }
+                });
+            });
+            
+            function switchLanguage(lang) {
+                elementsWithTranslations.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        if (element.tagName === 'INPUT' && element.type !== 'submit') {
+                            element.placeholder = translation;
+                        } else if (element.tagName === 'OPTION') {
+                            element.textContent = translation;
+                        } else {
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+                
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+            }
+        }
+    </script>
+</body>
+</html>

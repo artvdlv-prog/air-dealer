@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR Dealer - AI-Driven Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Color variables */
+        :root {
+            --primary-white: #FFFFFF;
+            --deep-graphite: #1A1A1A;
+            --signature-blue: #1464F4;
+            --warm-gray: #F4F4F4;
+            --lemon: #F4E146;
+            --turquoise: #46F4E1;
+            --light-gray: #E5E5E5;
+            --orange: #FF6B35;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-graphite);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--deep-graphite);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-item.active {
+            color: var(--signature-blue);
+        }
+
+        /* Navigation Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--deep-graphite);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .profile-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--warm-gray) 0%, var(--primary-white) 100%);
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 400;
+            text-transform: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Problem-Solution Section */
+        .problem-solution {
+            padding: 6rem 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .column-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+            text-align: center;
+        }
+
+        .problem-column .column-title {
+            color: var(--orange);
+        }
+
+        .solution-column .column-title {
+            color: var(--signature-blue);
+        }
+
+        .problem-item, .solution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--primary-white);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-item:hover, .solution-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .problem-icon, .solution-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .problem-icon {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .solution-icon {
+            background: rgba(20, 100, 244, 0.1);
+        }
+
+        .problem-text h4, .solution-text h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .problem-text p, .solution-text p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 6rem 0;
+            background: var(--warm-gray);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--primary-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(20, 100, 244, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--signature-blue);
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .benefit-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-graphite);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--signature-blue);
+            border: 2px solid var(--signature-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .profile-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">AIR DEALER</a>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="#" class="nav-item active" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="modules.html" class="nav-item" data-en="MODULES" data-ru="МОДУЛИ">MODULES</a>
+            <a href="dashboard.html" class="nav-item" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
+            <a href="contact.html" class="nav-item" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+        </div>
+        <div class="nav-right">
+            <a href="account.html" class="profile-icon" title="Personal Account / Личный кабинет">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </a>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title" data-en="AI-DRIVEN SOLUTIONS" data-ru="РЕШЕНИЯ НА ОСНОВЕ ИИ">AI-DRIVEN SOLUTIONS</h1>
+                <p class="page-subtitle" data-en="Transform your HVAC business with intelligent automation that eliminates manual processes and delivers precision results in minutes, not hours." data-ru="Трансформируйте свой HVAC бизнес с помощью интеллектуальной автоматизации, которая исключает ручные процессы и обеспечивает точные результаты за минуты, а не часы.">Transform your HVAC business with intelligent automation that eliminates manual processes and delivers precision results in minutes, not hours.</p>
+            </div>
+        </section>
+
+        <!-- Problem-Solution Section -->
+        <section class="problem-solution">
+            <div class="container">
+                <div class="grid-2">
+                    <div class="problem-column">
+                        <h3 class="column-title" data-en="CURRENT CHALLENGES" data-ru="ТЕКУЩИЕ ВЫЗОВЫ">CURRENT CHALLENGES</h3>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-icon">⏱</div>
+                                <div class="problem-text">
+                                    <h4 data-en="TIME-CONSUMING PROCESSES" data-ru="ТРУДОЗАТРАТНЫЕ ПРОЦЕССЫ">TIME-CONSUMING PROCESSES</h4>
+                                    <p data-en="Manual quote preparation takes hours of research, calculations, and document formatting" data-ru="Ручная подготовка коммерческих предложений занимает часы исследований, расчетов и форматирования документов">Manual quote preparation takes hours of research, calculations, and document formatting</p>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">⚠</div>
+                                <div class="problem-text">
+                                    <h4 data-en="PRICING ERRORS" data-ru="ОШИБКИ В ЦЕНООБРАЗОВАНИИ">PRICING ERRORS</h4>
+                                    <p data-en="Human errors in calculations, compatibility checks, and specification matching lead to costly mistakes" data-ru="Человеческие ошибки в расчетах, проверках совместимости и подборе спецификаций приводят к дорогостоящим ошибкам">Human errors in calculations, compatibility checks, and specification matching lead to costly mistakes</p>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📞</div>
+                                <div class="problem-text">
+                                    <h4 data-en="DELAYED RESPONSES" data-ru="ЗАДЕРЖКИ В ОТВЕТАХ">DELAYED RESPONSES</h4>
+                                    <p data-en="Waiting for manufacturer replies, technical approvals, and pricing updates delays project timelines" data-ru="Ожидание ответов производителей, технических согласований и обновления цен задерживает сроки проектов">Waiting for manufacturer replies, technical approvals, and pricing updates delays project timelines</p>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📋</div>
+                                <div class="problem-text">
+                                    <h4 data-en="COMPLEX DOCUMENTATION" data-ru="СЛОЖНАЯ ДОКУМЕНТАЦИЯ">COMPLEX DOCUMENTATION</h4>
+                                    <p data-en="Managing multiple product catalogs, technical specifications, and compatibility matrices manually" data-ru="Ручное управление множественными каталогами продуктов, техническими спецификациями и матрицами совместимости">Managing multiple product catalogs, technical specifications, and compatibility matrices manually</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="solution-column">
+                        <h3 class="column-title" data-en="AI-DRIVEN SOLUTIONS" data-ru="РЕШЕНИЯ НА ОСНОВЕ ИИ">AI-DRIVEN SOLUTIONS</h3>
+                        <div class="solution-list">
+                            <div class="solution-item">
+                                <div class="solution-icon">🤖</div>
+                                <div class="solution-text">
+                                    <h4 data-en="AUTOMATED PROCESSING" data-ru="АВТОМАТИЗИРОВАННАЯ ОБРАБОТКА">AUTOMATED PROCESSING</h4>
+                                    <p data-en="AI agents handle complete quote generation, from initial request to final proposal, in minutes" data-ru="ИИ агенты обрабатывают полную генерацию коммерческих предложений от первичного запроса до финального предложения за минуты">AI agents handle complete quote generation, from initial request to final proposal, in minutes</p>
+                                </div>
+                            </div>
+                            <div class="solution-item">
+                                <div class="solution-icon">✓</div>
+                                <div class="solution-text">
+                                    <h4 data-en="PRECISION ACCURACY" data-ru="ТОЧНОСТЬ">PRECISION ACCURACY</h4>
+                                    <p data-en="Smart validation systems eliminate human error with automated compatibility checks and pricing verification" data-ru="Умные системы валидации исключают человеческие ошибки с помощью автоматизированных проверок совместимости и верификации цен">Smart validation systems eliminate human error with automated compatibility checks and pricing verification</p>
+                                </div>
+                            </div>
+                            <div class="solution-item">
+                                <div class="solution-icon">⚡</div>
+                                <div class="solution-text">
+                                    <h4 data-en="INSTANT RESPONSES" data-ru="МГНОВЕННЫЕ ОТВЕТЫ">INSTANT RESPONSES</h4>
+                                    <p data-en="Real-time access to manufacturer data, pricing, and availability for immediate proposal delivery" data-ru="Доступ к данным производителей, ценам и наличию товара в реальном времени для немедленной доставки предложений">Real-time access to manufacturer data, pricing, and availability for immediate proposal delivery</p>
+                                </div>
+                            </div>
+                            <div class="solution-item">
+                                <div class="solution-icon">📊</div>
+                                <div class="solution-text">
+                                    <h4 data-en="INTELLIGENT ORGANIZATION" data-ru="ИНТЕЛЛЕКТУАЛЬНАЯ ОРГАНИЗАЦИЯ">INTELLIGENT ORGANIZATION</h4>
+                                    <p data-en="AI automatically manages product databases, updates specifications, and maintains compatibility matrices" data-ru="ИИ автоматически управляет базами данных продуктов, обновляет спецификации и поддерживает матрицы совместимости">AI automatically manages product databases, updates specifications, and maintains compatibility matrices</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="section-title" data-en="BUSINESS TRANSFORMATION" data-ru="ТРАНСФОРМАЦИЯ БИЗНЕСА" style="text-align: center; margin-bottom: 2rem;">BUSINESS TRANSFORMATION</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⏰</div>
+                        <h3 class="benefit-title" data-en="95% TIME REDUCTION" data-ru="95% ЭКОНОМИИ ВРЕМЕНИ">95% TIME REDUCTION</h3>
+                        <p class="benefit-description" data-en="From 7 hours to 7 minutes - complete quote generation with AI automation" data-ru="От 7 часов до 7 минут - полная генерация коммерческих предложений с автоматизацией ИИ">From 7 hours to 7 minutes - complete quote generation with AI automation</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <h3 class="benefit-title" data-en="INCREASED PROFITABILITY" data-ru="УВЕЛИЧЕНИЕ ПРИБЫЛЬНОСТИ">INCREASED PROFITABILITY</h3>
+                        <p class="benefit-description" data-en="Dynamic pricing optimization and error elimination boost margins significantly" data-ru="Динамическая оптимизация цен и устранение ошибок значительно повышают маржинальность">Dynamic pricing optimization and error elimination boost margins significantly</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3 class="benefit-title" data-en="COMPETITIVE ADVANTAGE" data-ru="КОНКУРЕНТНОЕ ПРЕИМУЩЕСТВО">COMPETITIVE ADVANTAGE</h3>
+                        <p class="benefit-description" data-en="Respond faster than competitors with instant, accurate proposals" data-ru="Реагируйте быстрее конкурентов с мгновенными, точными предложениями">Respond faster than competitors with instant, accurate proposals</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h3 class="benefit-title" data-en="SCALABLE GROWTH" data-ru="МАСШТАБИРУЕМЫЙ РОСТ">SCALABLE GROWTH</h3>
+                        <p class="benefit-description" data-en="Handle 10x more quotes without additional staff - unlimited scalability" data-ru="Обрабатывайте в 10 раз больше предложений без дополнительного персонала - неограниченная масштабируемость">Handle 10x more quotes without additional staff - unlimited scalability</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="cta-title" data-en="READY TO TRANSFORM?" data-ru="ГОТОВЫ К ТРАНСФОРМАЦИИ?">READY TO TRANSFORM?</h2>
+                <p class="cta-description" data-en="Experience the power of AI-driven HVAC solutions. Join leading dealers who've revolutionized their business processes." data-ru="Испытайте мощь HVAC решений на основе ИИ. Присоединяйтесь к ведущим дилерам, которые революционизировали свои бизнес-процессы.">Experience the power of AI-driven HVAC solutions. Join leading dealers who've revolutionized their business processes.</p>
+                <div class="cta-buttons">
+                    <a href="dashboard.html" class="btn btn-primary" data-en="Try Platform" data-ru="Попробовать платформу">Try Platform</a>
+                    <a href="contact.html" class="btn btn-secondary" data-en="Contact Sales" data-ru="Связаться с продажами">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguageToggle();
+        });
+
+        function initLanguageToggle() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsWithTranslations = document.querySelectorAll('[data-en][data-ru]');
+            
+            let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(currentLang);
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    if (newLang !== currentLang) {
+                        switchLanguage(newLang);
+                        currentLang = newLang;
+                        localStorage.setItem('preferredLanguage', newLang);
+                    }
+                });
+            });
+            
+            function switchLanguage(lang) {
+                elementsWithTranslations.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        if (element.tagName === 'INPUT' && element.type !== 'submit') {
+                            element.placeholder = translation;
+                        } else if (element.tagName === 'OPTION') {
+                            element.textContent = translation;
+                        } else {
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+                
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR Dealer - Contact Us</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1A1A1A;
+            background: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Color variables */
+        :root {
+            --primary-white: #FFFFFF;
+            --deep-graphite: #1A1A1A;
+            --signature-blue: #1464F4;
+            --warm-gray: #F4F4F4;
+            --lemon: #F4E146;
+            --turquoise: #46F4E1;
+            --light-gray: #E5E5E5;
+            --orange: #FF6B35;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--deep-graphite);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--deep-graphite);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--signature-blue);
+        }
+
+        .nav-item.active {
+            color: var(--signature-blue);
+        }
+
+        /* Navigation Right Side */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--deep-graphite);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .profile-icon:hover {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+            border-color: var(--signature-blue);
+            transform: scale(1.05);
+        }
+
+        .profile-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .profile-icon:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--light-gray);
+            color: var(--deep-graphite);
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--signature-blue);
+            color: var(--signature-blue);
+        }
+
+        .lang-btn.active {
+            background: var(--signature-blue);
+            border-color: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--warm-gray) 0%, var(--primary-white) 100%);
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 400;
+            text-transform: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .contact-method {
+            padding: 2rem;
+            background: var(--primary-white);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--signature-blue);
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .contact-details {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-details a {
+            color: var(--signature-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--deep-graphite);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--deep-graphite);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: var(--primary-white);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--signature-blue);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--signature-blue);
+            color: var(--primary-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-graphite);
+            transform: translateY(-2px);
+        }
+
+        /* Office Section */
+        .office-section {
+            padding: 6rem 0;
+            background: var(--warm-gray);
+        }
+
+        .office-content {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .office-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--deep-graphite);
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .office-card {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .office-flag {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .office-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-graphite);
+        }
+
+        .office-address {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .office-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .office-contact span {
+            color: var(--signature-blue);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--deep-graphite);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: var(--primary-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--primary-white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--deep-graphite);
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: var(--warm-gray);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .profile-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .office-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">AIR DEALER</a>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item" data-en="HOME" data-ru="ГЛАВНАЯ">HOME</a>
+            <a href="solution.html" class="nav-item" data-en="SOLUTION" data-ru="РЕШЕНИЕ">SOLUTION</a>
+            <a href="modules.html" class="nav-item" data-en="MODULES" data-ru="МОДУЛИ">MODULES</a>
+            <a href="dashboard.html" class="nav-item" data-en="PLATFORM" data-ru="ПЛАТФОРМА">PLATFORM</a>
+            <a href="#" class="nav-item active" data-en="CONTACT" data-ru="КОНТАКТЫ">CONTACT</a>
+        </div>
+        <div class="nav-right">
+            <a href="account.html" class="profile-icon" title="Personal Account / Личный кабинет">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </a>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title" data-en="CONTACT US" data-ru="СВЯЖИТЕСЬ С НАМИ">CONTACT US</h1>
+                <p class="page-subtitle" data-en="Ready to transform your HVAC business? Get in touch with our team to learn how AIR Dealer can revolutionize your operations." data-ru="Готовы трансформировать свой HVAC бизнес? Свяжитесь с нашей командой, чтобы узнать, как AIR Dealer может революционизировать ваши операции.">Ready to transform your HVAC business? Get in touch with our team to learn how AIR Dealer can revolutionize your operations.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <h3 class="contact-title" data-en="Email Support" data-ru="Поддержка по Email">Email Support</h3>
+                            <div class="contact-details">
+                                <p data-en="Get technical support and general inquiries answered within 24 hours." data-ru="Получите техническую поддержку и ответы на общие вопросы в течение 24 часов.">Get technical support and general inquiries answered within 24 hours.</p>
+                                <p><strong data-en="Sales:" data-ru="Продажи:">Sales:</strong> <a href="mailto:sales@airdealer.ai">sales@airdealer.ai</a></p>
+                                <p><strong data-en="Support:" data-ru="Поддержка:">Support:</strong> <a href="mailto:support@airdealer.ai">support@airdealer.ai</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">📞</div>
+                            <h3 class="contact-title" data-en="Phone Support" data-ru="Поддержка по телефону">Phone Support</h3>
+                            <div class="contact-details">
+                                <p data-en="Speak directly with our AI specialists and solution architects." data-ru="Говорите напрямую с нашими специалистами по ИИ и архитекторами решений.">Speak directly with our AI specialists and solution architects.</p>
+                                <p><strong data-en="US/Canada:" data-ru="США/Канада:">US/Canada:</strong> <a href="tel:+1-800-AIR-DEAL">+1 (800) AIR-DEAL</a></p>
+                                <p><strong data-en="International:" data-ru="Международный:">International:</strong> <a href="tel:+1-555-247-3325">+1 (555) 247-3325</a></p>
+                                <p><small data-en="Mon-Fri, 9AM-6PM EST" data-ru="Пн-Пт, 9:00-18:00 EST">Mon-Fri, 9AM-6PM EST</small></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">💬</div>
+                            <h3 class="contact-title" data-en="Live Chat" data-ru="Онлайн чат">Live Chat</h3>
+                            <div class="contact-details">
+                                <p data-en="Instant support through our AI-powered chat system." data-ru="Мгновенная поддержка через нашу систему чата на основе ИИ.">Instant support through our AI-powered chat system.</p>
+                                <p data-en="Available 24/7 on our platform" data-ru="Доступно 24/7 на нашей платформе">Available 24/7 on our platform</p>
+                                <p><a href="dashboard.html" data-en="Start Chat" data-ru="Начать чат">Start Chat →</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3 class="form-title" data-en="Send Us a Message" data-ru="Отправьте нам сообщение">Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" data-en="First Name" data-ru="Имя">First Name</label>
+                                    <input type="text" class="form-input" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-en="Last Name" data-ru="Фамилия">Last Name</label>
+                                    <input type="text" class="form-input" id="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" data-en="Company Name" data-ru="Название компании">Company Name</label>
+                                <input type="text" class="form-input" id="company" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" data-en="Email Address" data-ru="Email адрес">Email Address</label>
+                                    <input type="email" class="form-input" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-en="Phone Number" data-ru="Номер телефона">Phone Number</label>
+                                    <input type="tel" class="form-input" id="phone">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" data-en="Inquiry Type" data-ru="Тип запроса">Inquiry Type</label>
+                                <select class="form-select" id="inquiryType" required>
+                                    <option value="" data-en="Select inquiry type" data-ru="Выберите тип запроса">Select inquiry type</option>
+                                    <option value="sales" data-en="Sales & Pricing" data-ru="Продажи и цены">Sales & Pricing</option>
+                                    <option value="demo" data-en="Product Demo" data-ru="Демонстрация продукта">Product Demo</option>
+                                    <option value="support" data-en="Technical Support" data-ru="Техническая поддержка">Technical Support</option>
+                                    <option value="partnership" data-en="Partnership" data-ru="Партнерство">Partnership</option>
+                                    <option value="other" data-en="Other" data-ru="Другое">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" data-en="Message" data-ru="Сообщение">Message</label>
+                                <textarea class="form-textarea" id="message" data-en="Tell us about your HVAC business needs..." data-ru="Расскажите нам о потребностях вашего HVAC бизнеса..." placeholder="Tell us about your HVAC business needs..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" data-en="Send Message" data-ru="Отправить сообщение">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Office Section -->
+        <section class="office-section">
+            <div class="container">
+                <div class="office-content">
+                    <h2 class="office-title" data-en="OUR OFFICES" data-ru="НАШИ ОФИСЫ">OUR OFFICES</h2>
+                </div>
+                <div class="office-grid">
+                    <div class="office-card">
+                        <div class="office-flag">🇺🇸</div>
+                        <h3 class="office-name" data-en="United States HQ" data-ru="Штаб-квартира США">United States HQ</h3>
+                        <div class="office-address">
+                            <p>123 Innovation Drive<br>
+                            Tech Valley, CA 94000<br>
+                            United States</p>
+                        </div>
+                        <div class="office-contact">
+                            <p><span data-en="Phone:" data-ru="Телефон:">Phone:</span> +1 (800) AIR-DEAL</p>
+                            <p><span data-en="Email:" data-ru="Email:">Email:</span> us@airdealer.ai</p>
+                        </div>
+                    </div>
+
+                    <div class="office-card">
+                        <div class="office-flag">🇪🇺</div>
+                        <h3 class="office-name" data-en="European Office" data-ru="Европейский офис">European Office</h3>
+                        <div class="office-address">
+                            <p>45 Tech Boulevard<br>
+                            Amsterdam, 1000 AB<br>
+                            Netherlands</p>
+                        </div>
+                        <div class="office-contact">
+                            <p><span data-en="Phone:" data-ru="Телефон:">Phone:</span> +31 20 123 4567</p>
+                            <p><span data-en="Email:" data-ru="Email:">Email:</span> eu@airdealer.ai</p>
+                        </div>
+                    </div>
+
+                    <div class="office-card">
+                        <div class="office-flag">🌏</div>
+                        <h3 class="office-name" data-en="Asia-Pacific" data-ru="Азиатско-Тихоокеанский">Asia-Pacific</h3>
+                        <div class="office-address">
+                            <p>88 Business Park<br>
+                            Singapore 018956<br>
+                            Singapore</p>
+                        </div>
+                        <div class="office-contact">
+                            <p><span data-en="Phone:" data-ru="Телефон:">Phone:</span> +65 6123 4567</p>
+                            <p><span data-en="Email:" data-ru="Email:">Email:</span> apac@airdealer.ai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="faq-title" data-en="FREQUENTLY ASKED QUESTIONS" data-ru="ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ">FREQUENTLY ASKED QUESTIONS</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-en="How quickly can I get started with AIR Dealer?" data-ru="Как быстро я могу начать работать с AIR Dealer?">How quickly can I get started with AIR Dealer?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-en="You can start using AIR Dealer immediately after signing up. Our onboarding process takes less than 30 minutes, and you'll be generating quotes within the first hour." data-ru="Вы можете начать использовать AIR Dealer сразу после регистрации. Процесс адаптации занимает менее 30 минут, и вы будете генерировать коммерческие предложения в течение первого часа.">You can start using AIR Dealer immediately after signing up. Our onboarding process takes less than 30 minutes, and you'll be generating quotes within the first hour.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-en="What HVAC brands does AIR Dealer support?" data-ru="Какие бренды HVAC поддерживает AIR Dealer?">What HVAC brands does AIR Dealer support?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-en="AIR Dealer supports over 50 major HVAC brands including Daikin, Mitsubishi, Carrier, Trane, LG, and many more. We continuously add new brands based on customer requests." data-ru="AIR Dealer поддерживает более 50 основных брендов HVAC, включая Daikin, Mitsubishi, Carrier, Trane, LG и многие другие. Мы постоянно добавляем новые бренды по запросам клиентов.">AIR Dealer supports over 50 major HVAC brands including Daikin, Mitsubishi, Carrier, Trane, LG, and many more. We continuously add new brands based on customer requests.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-en="Is my data secure with AIR Dealer?" data-ru="Безопасны ли мои данные с AIR Dealer?">Is my data secure with AIR Dealer?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-en="Yes, absolutely. We use enterprise-grade encryption, secure cloud infrastructure, and comply with SOC 2 Type II standards. Your business data is never shared with competitors." data-ru="Да, абсолютно. Мы используем корпоративное шифрование, безопасную облачную инфраструктуру и соответствуем стандартам SOC 2 Type II. Данные вашего бизнеса никогда не передаются конкурентам.">Yes, absolutely. We use enterprise-grade encryption, secure cloud infrastructure, and comply with SOC 2 Type II standards. Your business data is never shared with competitors.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-en="Can AIR Dealer integrate with my existing systems?" data-ru="Может ли AIR Dealer интегрироваться с моими существующими системами?">Can AIR Dealer integrate with my existing systems?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-en="Yes, AIR Dealer offers APIs and integrations with popular CRM systems, accounting software, and project management tools. Our team can help with custom integrations as needed." data-ru="Да, AIR Dealer предлагает API и интеграции с популярными CRM системами, бухгалтерским программным обеспечением и инструментами управления проектами. Наша команда может помочь с индивидуальными интеграциями по мере необходимости.">Yes, AIR Dealer offers APIs and integrations with popular CRM systems, accounting software, and project management tools. Our team can help with custom integrations as needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span data-en="What kind of support do you provide?" data-ru="Какую поддержку вы предоставляете?">What kind of support do you provide?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p data-en="We offer comprehensive support including 24/7 chat support, phone support during business hours, extensive documentation, video tutorials, and dedicated customer success managers for enterprise clients." data-ru="Мы предлагаем комплексную поддержку, включая круглосуточную поддержку в чате, телефонную поддержку в рабочее время, обширную документацию, видеоуроки и выделенных менеджеров по работе с клиентами для корпоративных клиентов.">We offer comprehensive support including 24/7 chat support, phone support during business hours, extensive documentation, video tutorials, and dedicated customer success managers for enterprise clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Contact page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguageToggle();
+            initFAQ();
+            initContactForm();
+        });
+
+        // FAQ functionality
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    
+                    // Open current item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Contact form functionality
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Simulate form submission
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                
+                // Reset form
+                form.reset();
+            });
+        }
+
+        // Language switching functionality
+        function initLanguageToggle() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const elementsWithTranslations = document.querySelectorAll('[data-en][data-ru]');
+            
+            let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(currentLang);
+            
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    if (newLang !== currentLang) {
+                        switchLanguage(newLang);
+                        currentLang = newLang;
+                        localStorage.setItem('preferredLanguage', newLang);
+                    }
+                });
+            });
+            
+            function switchLanguage(lang) {
+                elementsWithTranslations.forEach(element => {
+                    const translation = element.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        if (element.tagName === 'INPUT' && element.type !== 'submit') {
+                            element.placeholder = translation;
+                        } else if (element.tagName === 'OPTION') {
+                            element.textContent = translation;
+                        } else {
+                            element.innerHTML = translation;
+                        }
+                    }
+                });
+                
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+            }
+        }
+    </script>
+</body>
+</html>

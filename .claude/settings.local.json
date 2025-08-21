@@ -10,7 +10,8 @@
       "Bash(git push:*)",
       "Bash(start dashboard.html)",
       "Bash(start account.html)",
-      "Bash(start quote.html)"
+      "Bash(start quote.html)",
+      "Bash(start index.html)"
     ],
     "deny": [],
     "ask": []
