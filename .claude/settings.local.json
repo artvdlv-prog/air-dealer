@@ -11,7 +11,8 @@
       "Bash(start dashboard.html)",
       "Bash(start account.html)",
       "Bash(start quote.html)",
-      "Bash(start index.html)"
+      "Bash(start index.html)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
