@@ -506,6 +506,10 @@
                 display: none; /* Hide icons on small mobile screens */
             }
 
+            .product-image {
+                display: none; /* Hide product icons in equipment list */
+            }
+
             /* Mobile card layout optimization */
             .module-card {
                 position: relative;
@@ -2068,14 +2072,12 @@
             }
 
             .list-header {
-                grid-template-columns: 60px 2fr 0.7fr 0.9fr 90px;
+                grid-template-columns: 2fr 0.7fr 0.9fr 90px;
                 gap: 0.5rem;
             }
 
             .product-image {
-                width: 60px;
-                height: 45px;
-                margin-right: 1rem;
+                display: none; /* Hide product icons on mobile */
             }
 
             .product-actions {
@@ -2108,7 +2110,7 @@
             }
 
             .list-header {
-                grid-template-columns: 80px 1fr 120px;
+                grid-template-columns: 1fr 120px;
                 gap: 1rem;
             }
 
@@ -2140,13 +2142,7 @@
             }
 
             .product-image {
-                width: 60px;
-                height: 45px;
-                margin-right: 1rem;
-            }
-
-            .product-image:hover {
-                transform: scale(2.5);
+                display: none; /* Hide product icons on mobile */
             }
 
             .product-actions {
