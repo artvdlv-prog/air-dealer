@@ -495,15 +495,81 @@
             }
 
             .card-header {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
                 gap: 0.5rem;
+                margin-bottom: 0.75rem;
             }
 
             .card-icon {
-                min-width: 35px;
-                height: 35px;
-                font-size: 1.3rem;
+                display: none; /* Hide icons on small mobile screens */
+            }
+
+            /* Mobile card layout optimization */
+            .module-card {
+                position: relative;
+            }
+
+            .card-header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-header > div {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .card-description {
+                margin-bottom: 0.75rem;
+                clear: both;
+            }
+
+            .card-metrics {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                max-width: 80px;
+            }
+
+            .metric {
+                text-align: right;
+                min-width: 0;
+                padding: 0.2rem 0.4rem;
+                background: rgba(20, 100, 244, 0.08);
+                border-radius: 3px;
+                margin-bottom: 0.15rem;
+            }
+
+            .metric-value {
+                font-size: 0.85rem;
+                font-weight: 700;
+                margin-bottom: 0.05rem;
+                color: var(--signature-blue);
+            }
+
+            .metric-label {
+                font-size: 0.6rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #666;
+                line-height: 1;
+            }
+
+            /* Adjust card title to leave space for metrics */
+            .card-title {
+                padding-right: 85px;
+                margin-bottom: 0.25rem;
             }
 
             /* Enhanced mobile touch targets and usability */
@@ -2436,12 +2502,14 @@
             .card-header {
                 gap: 0.75rem;
                 margin-bottom: 1rem;
+                justify-content: space-between;
             }
 
             .card-icon {
                 font-size: 1.5rem;
                 min-width: 40px;
                 height: 40px;
+                flex-shrink: 0;
             }
 
             .card-metrics {
