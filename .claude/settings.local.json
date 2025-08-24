@@ -13,9 +13,14 @@
       "Bash(start quote.html)",
       "Bash(start index.html)",
       "Bash(git commit:*)",
-      "WebFetch(domain:daichi.business)"
+      "WebFetch(domain:daichi.business)",
+      "Bash(grep:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\Users\\art-s\\code"
+    ]
   }
 }
