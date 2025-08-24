@@ -15,7 +15,9 @@
       "Bash(git commit:*)",
       "WebFetch(domain:daichi.business)",
       "Bash(grep:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(start \"C:\\Users\\art-s\\code\\Airdealer\\index.html\")",
+      "Bash(start \"C:\\Users\\art-s\\code\\hvac-platform\\index.html\")"
     ],
     "deny": [],
     "ask": [],
